@@ -1,1 +1,16 @@
-# movies-explorer-frontend
+# Movies-explorer (фронтенд)
+
+
+
+### Планы по доработке
+
+Добавить возможности:
+* 
+
+### Команды для запуска проекта
+
+1. git clone ...
+2. npm install (в папке проекта)
+3. npm run build (для сборки проекта)
+4. npm start
+
