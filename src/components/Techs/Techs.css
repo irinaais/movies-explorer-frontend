@@ -7,6 +7,8 @@
     margin: 0 auto;
     color: white;
     letter-spacing: -0.04em;
+    padding-bottom: 100px;
+    border: purple solid 1px;
 }
 
 .techs__header {
@@ -33,4 +35,24 @@
     line-height: 20px;
     text-align: center;
     max-width: 460px;
+}
+
+.techs__list {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 100px 0 0;
+}
+
+.techs__item-text {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: -0.04em;
+    padding: 21px 22px 21px 26px;
+    background-color: #303030;
+    border-radius: 10px;
+    text-align: center;
 }
