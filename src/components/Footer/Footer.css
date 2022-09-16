@@ -44,6 +44,7 @@
 .footer__contacts-link {
     color: white;
     text-decoration: none;
+    transition: .2s;
 }
 
 .footer__contacts-link:hover {

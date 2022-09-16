@@ -41,6 +41,7 @@
     border: 1px solid rgba(255, 255, 255, .6);
     padding: 9px 19px;
     border-radius: 3px;
+    transition: .2s;
 }
 
 .promo__button:hover {

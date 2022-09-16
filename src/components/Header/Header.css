@@ -34,6 +34,7 @@
     line-height: 16px;
     border-radius: 3px;
     padding: 8px 20px;
+    transition: .2s;
 }
 
 .header__button:hover {
