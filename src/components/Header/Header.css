@@ -11,6 +11,7 @@
     justify-content: space-between;
     border: solid 1px red;
     max-width: 1140px;
+    min-width: 320px;
     margin: 0 auto;
     padding: 18px 0;
 }
@@ -49,5 +50,26 @@
 .header__button_signin {
     color: black;
     background-color: #3ddc84;
-;
 }
+
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    .header__container {
+        padding: 18px 30px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .header__container {
+        padding: 18px 14px;
+    }
+
+    .header__button_signup {
+        padding-right: 14px;
+    }
+
+    .header__button {
+        font-size: 10px;
+        padding: 5px 12px;
+    }
+}
+
