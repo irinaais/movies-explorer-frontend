@@ -8,7 +8,6 @@
     color: white;
     letter-spacing: -0.04em;
     padding: 100px 0;
-    border: purple solid 1px;
 }
 
 .techs__header {
@@ -65,7 +64,6 @@
         color: white;
         letter-spacing: -0.04em;
         padding: 140px 50px 90px;
-        border: purple solid 1px;
     }
 
     .techs__title {

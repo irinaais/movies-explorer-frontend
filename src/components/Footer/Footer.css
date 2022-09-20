@@ -1,9 +1,4 @@
-.footer {
-    border: #FF6838 solid 1px;
-}
-
 .footer__container {
-    border: purple solid 1px;
     max-width: 1140px;
     margin: 0 auto;
     padding: 79px 0 20px;
