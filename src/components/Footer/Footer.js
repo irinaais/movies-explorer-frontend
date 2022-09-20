@@ -10,6 +10,9 @@ function Footer() {
           <p className="footer__copyright">&#169; 2022</p>
           <ul className="footer__contacts-list">
             <li className="footer__contacts-item">
+              <a className="footer__contacts-link" href="https://practicum.yandex.ru" target="_blank">Яндекс.Практикум</a>
+            </li>
+            <li className="footer__contacts-item">
               <a className="footer__contacts-link" href="https://github.com/irinaais" target="_blank">Github</a>
             </li>
             <li className="footer__contacts-item">
