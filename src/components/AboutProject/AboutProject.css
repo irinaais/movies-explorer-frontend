@@ -1,11 +1,12 @@
 .about-project {
-    max-width: 1140px;
-    min-width: 320px;
-    margin: 0 auto;
+
 }
 
 .about-project__container {
-    padding: 110px 0;
+    max-width: 1140px;
+    min-width: 320px;
+    margin: 0 auto;
+    padding: 110px 70px;
 }
 
 .about-project__header {

@@ -14,16 +14,18 @@ const cardDislikeButtonClassName = "movies-card__button movies-card__button_disl
 function MoviesCardList() {
   return (
     <section className="movies-card-list">
-      <ul className="movies-card-list__container">
-        <MoviesCard title="33 слова о дизайне" duration="1ч 42м" image={design} button={cardLikeButtonClassName}/>
-        <MoviesCard title="Киноальманах «100 лет дизайна»" duration="1ч 42м" image={hundredYears} button={cardLikeButtonClassName}/>
-        <MoviesCard title="В погоне за Бенкси" duration="1ч 42м" image={benksi} button={cardDislikeButtonClassName}/>
-        <MoviesCard title="Баския: Взрыв реальности" duration="1ч 42м" image={baskiya} button={cardDislikeButtonClassName}/>
-        <MoviesCard title="Бег это свобода" duration="1ч 42м" image={run} button={cardLikeButtonClassName}/>
-        <MoviesCard title="Книготорговцы" duration="1ч 42м" image={booksellers} button={cardDislikeButtonClassName}/>
-        <MoviesCard title="Когда я думаю о Германии ночью" duration="1ч 42м" image={germany} button={cardDislikeButtonClassName}/>
-      </ul>
-      <button className="movies-card-list__button" type="button">Ещё</button>
+      <div className="movies-card-list__container">
+        <ul className="movies-card-list__list">
+          <MoviesCard title="33 слова о дизайне" duration="1ч 42м" image={design} button={cardLikeButtonClassName}/>
+          <MoviesCard title="Киноальманах «100 лет дизайна»" duration="1ч 42м" image={hundredYears} button={cardLikeButtonClassName}/>
+          <MoviesCard title="В погоне за Бенкси" duration="1ч 42м" image={benksi} button={cardDislikeButtonClassName}/>
+          <MoviesCard title="Баския: Взрыв реальности" duration="1ч 42м" image={baskiya} button={cardDislikeButtonClassName}/>
+          <MoviesCard title="Бег это свобода" duration="1ч 42м" image={run} button={cardLikeButtonClassName}/>
+          <MoviesCard title="Книготорговцы" duration="1ч 42м" image={booksellers} button={cardDislikeButtonClassName}/>
+          <MoviesCard title="Когда я думаю о Германии ночью" duration="1ч 42м" image={germany} button={cardDislikeButtonClassName}/>
+        </ul>
+        <button className="movies-card-list__button" type="button">Ещё</button>
+      </div>
     </section>
   );
 }

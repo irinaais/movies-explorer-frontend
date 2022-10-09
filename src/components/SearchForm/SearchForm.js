@@ -11,6 +11,7 @@ function SearchForm() {
           <button className="search-form__button" type="submit"/>
         </form>
         <Checkbox/>
+        <div className="search-form__line"/>
       </div>
     </section>
   );

@@ -1,6 +1,5 @@
 .search-form {
     background-color: #202020;
-    padding: 80px 0 10px;
 }
 
 .search-form__form {
@@ -12,8 +11,7 @@
 .search-form__container {
     max-width: 1140px;
     margin: 0 auto;
-    padding: 0 0 40px;
-    border-bottom: #424242 solid 1px;
+    padding: 80px 70px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,6 +40,12 @@
     border-radius: 8px;
     margin-top: 3px;
     background-size: 32px 32px;
+}
+
+.search-form__line {
+    border-bottom: #424242 solid 1px;
+    width: 100%;
+    padding-top: 40px;
 }
 
 @media screen and (max-width: 1023px) and (min-width: 768px) {

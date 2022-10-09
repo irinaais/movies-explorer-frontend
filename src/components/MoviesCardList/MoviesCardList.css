@@ -1,12 +1,18 @@
 .movies-card-list {
-    padding: 70px 0 80px;
+
+}
+
+.movies-card-list__container {
+    padding: 70px 70px 80px;
     max-width: 1140px;
     margin: 0 auto;
 }
 
-.movies-card-list__container {
-    padding: 0 0 60px;
+.movies-card-list__list {
+    margin: 0 0 50px;
+    padding: 0;
 }
+
 .movies-card {
     background-color: #2F2F2F;
     display: flex;
