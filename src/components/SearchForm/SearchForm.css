@@ -49,21 +49,13 @@
 }
 
 @media screen and (max-width: 1023px) and (min-width: 768px) {
-    .search-form {
-        padding: 80px 0 10px;
-    }
-
     .search-form__container {
-        padding: 0 30px 39px;
+        padding: 80px 30px 10px;
     }
 }
 
 @media screen and (max-width: 767px) {
-    .search-form {
-        padding: 80px 14px 10px;
-    }
-
     .search-form__container {
-        padding: 0 0 41px;
+        padding: 80px 14px 10px;
     }
 }

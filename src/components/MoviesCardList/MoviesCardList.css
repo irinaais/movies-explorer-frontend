@@ -24,3 +24,15 @@
     color: white;
     padding: 11px 0 9px;
 }
+
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    .movies-card-list__container {
+        padding: 70px 30px 80px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .movies-card-list__container {
+        padding: 40px 10px 80px;
+    }
+}
