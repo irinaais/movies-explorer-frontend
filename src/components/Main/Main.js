@@ -8,11 +8,11 @@ import Portfolio from "../Portfolio/Portfolio";
 import Header from "../Header/Header";
 // import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Main() {
+function Main(props) {
   // const currentUser = React.useContext(CurrentUserContext);
   return (
     <main className="main">
-      <Header/>
+      <Header theme={"header_theme_light"} loggedIn={props.loggedIn}/>
       <Promo/>
       <AboutProject/>
       <Techs/>

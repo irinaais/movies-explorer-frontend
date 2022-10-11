@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Main from "../Main/Main";
@@ -11,13 +11,26 @@ import Register from "../Register/Register";
 // import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    tokenCheck();
+  }, [loggedIn]);
+
+  function tokenCheck() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setLoggedIn(true);
+    }
+  }
+
   return (
     // <CurrentUserContext.Provider value={ currentUser }>
       <div className="page">
         <Routes>
-          <Route path="/" element={<Main/>}/>
-          <Route path="/movies" element={<Movies/>}/>
-          <Route path="/saved-movies" element={<SavedMovies/>}/>
+          <Route path="/" element={<Main loggedIn={loggedIn}/>}/>
+          <Route path="/movies" element={<Movies loggedIn={loggedIn}/>}/>
+          <Route path="/saved-movies" element={<SavedMovies loggedIn={loggedIn}/>}/>
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/signin" element={<Login/>}/>
           <Route path="/signup" element={<Register/>}/>

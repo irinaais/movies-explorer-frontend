@@ -6,6 +6,10 @@
     background-color: #073042;
 }
 
+.header_theme_dark {
+    background-color: #202020;
+}
+
 .header__container {
     display: flex;
     justify-content: space-between;
