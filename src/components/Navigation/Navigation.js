@@ -2,6 +2,7 @@ import React from "react";
 import "./Navigation.css";
 import { NavLink } from "react-router-dom";
 import account from "../../images/account.svg";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
 function Navigation() {
   const setActive = ({ isActive }) =>
@@ -16,6 +17,7 @@ function Navigation() {
       <NavLink to="/profile" className="navigation__profile">Аккаунт
         <img className="navigation__profile-image" src={account} alt="Кнопка Аккаунт"/>
       </NavLink>
+      <BurgerMenu/>
     </section>
   );
 }

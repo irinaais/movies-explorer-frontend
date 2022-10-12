@@ -57,3 +57,23 @@
     border-radius: 6px;
     margin-left: 13px;
 }
+
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    .navigation__links {
+        display: none;
+    }
+
+    .navigation__profile {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .navigation__links {
+        display: none;
+    }
+
+    .navigation__profile {
+        display: none;
+    }
+}
