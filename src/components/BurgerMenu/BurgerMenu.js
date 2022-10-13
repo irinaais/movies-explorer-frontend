@@ -1,10 +1,10 @@
 import React from "react";
 import "./BurgerMenu.css";
 
-function BurgerMenu() {
+function BurgerMenu(props) {
   return (
     <section className="burger-menu">
-      <button className="burger-menu__button"/>
+      <button className="burger-menu__button" type="button" onClick={ props.onClick }/>
     </section>
   );
 }
