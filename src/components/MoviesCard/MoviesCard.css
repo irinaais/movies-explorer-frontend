@@ -53,6 +53,10 @@
     background-image: url("../../images/heartBeLike.svg");
 }
 
+.movies-card__button_delete {
+    background-image: url("../../images/delete_button.svg");
+}
+
 .movies-card__image {
     width: 220px;
     height: 122px;
