@@ -31,11 +31,10 @@ function App() {
           <Route path="/" element={<Main loggedIn={loggedIn}/>}/>
           <Route path="/movies" element={<Movies loggedIn={loggedIn}/>}/>
           <Route path="/saved-movies" element={<SavedMovies loggedIn={loggedIn}/>}/>
-          <Route path="/profile" element={<Profile/>}/>
+          <Route path="/profile" element={<Profile name="Виталий" email="pochta@yandex.ru"/>}/>
           <Route path="/signin" element={<Login/>}/>
           <Route path="/signup" element={<Register/>}/>
         </Routes>
-        <Footer/>
       </div>
     // </CurrentUserContext.Provider>
   );
