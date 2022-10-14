@@ -7,7 +7,9 @@ function Header(props) {
   return (
     <header className={`header ${props.theme}`}>
       <div className="header__container">
-        <img alt="Логотип" src={ logo } className="header__logo"/>
+        <a className="header__button header__button_logo" href="/">
+          <img alt="Логотип" src={ logo } className="header__logo"/>
+        </a>
         {props.loggedIn ? (
           <Navigation />
         ):(
