@@ -33,7 +33,7 @@ function App() {
           <Route path="/saved-movies" element={<SavedMovies loggedIn={loggedIn}/>}/>
           <Route path="/profile" element={<Profile loggedIn={loggedIn} name="Виталий" email="pochta@yandex.ru"/>}/>
           <Route path="/signin" element={<Login loggedIn={loggedIn} name="Виталий" email="pochta@yandex.ru"/>}/>
-          <Route path="/signup" element={<Register/>}/>
+          <Route path="/signup" element={<Register loggedIn={loggedIn} name="Виталий" email="pochta@yandex.ru"/>}/>
         </Routes>
       </div>
     // </CurrentUserContext.Provider>
