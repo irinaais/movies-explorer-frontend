@@ -26,6 +26,10 @@
 
 .profile__label {
     position: relative;
+    border-bottom: 1px solid #424242;
+    border-top: none;
+    border-left: none;
+    border-right: none;
 }
 
 .profile__info {
@@ -34,23 +38,16 @@
 }
 
 .profile__input {
-    border-bottom: 1px solid rgb(190, 190, 190);
     font-weight: 400;
     font-size: 11px;
     line-height: 13px;
     color: white;
-    border-top: none;
     background-color: #202020;
-    border-left: none;
-    border-right: none;
+    border: none;
     display: block;
     padding: 16px 0;
     width: 100%;
     text-align: end;
-}
-
-.profile__input:last-of-type {
-    border: none;
 }
 
 .profile__input:focus {
@@ -59,6 +56,10 @@
 
 .profile__input::placeholder {
     color: white;
+}
+
+.profile__label:last-of-type {
+    border-bottom: none;
 }
 
 .profile__input-text {
@@ -84,6 +85,7 @@
     background-color: transparent;
     margin: 16px 0 0;
     border: 0;
+    font-weight: 400;
 }
 
 .profile__button:hover {
@@ -95,11 +97,27 @@
 }
 
 .profile__button_edit {
-    font-weight: 400;
     color: white;
 }
 
 .profile__button_exit {
     font-weight: 500;
     color: #EE3465;
+}
+
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    .profile__container {
+        padding: 70px 30px 40px;
+    }
+
+    .profile__button {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .profile__form {
+        width: 260px;
+    }
 }
