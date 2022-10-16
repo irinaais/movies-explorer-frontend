@@ -34,7 +34,7 @@ function Register(props) {
           </fieldset>
           <button className="register__button register__button_signin">Зарегистрироваться</button>
           <h3 className="register__text-register">Уже зарегистрированы?
-            <Link className="register__button register__button_text-register" to="/signup">Войти</Link>
+            <Link className="register__button register__button_text-register" to="/signin">Войти</Link>
           </h3>
         </form>
       </div>
