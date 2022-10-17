@@ -62,11 +62,11 @@
     padding: 0;
 }
 
-.register__label {
+.register__input-container {
     position: relative;
 }
 
-.register__input-text {
+.register__label {
     position: absolute;
     top: 0;
     font-size: 10px;
@@ -88,8 +88,19 @@
     background-color: #202020;
     display: block;
     padding: 17px 0 10px;
-    margin: 0 0 24px;
+    margin: 0;
     width: 100%;
+}
+
+.register__input-error {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #EE3465;
+    padding: 0;
+    margin: 6px 0 0;
+    display: block;
+    min-height: 24px;
 }
 
 .register__text-register {
