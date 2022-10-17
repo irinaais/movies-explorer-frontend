@@ -9,7 +9,7 @@ function PopupBurger(props) {
 
   return (
     <section className={`popupBurger ${props.isOpen ? "popupBurger_opened" : ""}`}>
-      <button className="popupBurger__button-close" type="button" onClick={props.isClose}/>
+      <button className="popupBurger__button-close" type="button" onClick={props.isClose} aria-label="Закрыть меню"/>
       <div className="popupBurger__container">
         <div className="popupBurger__links">
           <NavLink to="/" className={ setActive }>Главная</NavLink>

@@ -10,16 +10,16 @@ function Footer() {
           <p className="footer__copyright">&#169; 2022</p>
           <ul className="footer__contacts-list">
             <li className="footer__contacts-item">
-              <a className="footer__contacts-link" href="https://practicum.yandex.ru" target="_blank">Яндекс.Практикум</a>
+              <a className="footer__contacts-link" href="https://practicum.yandex.ru" target="_blank" rel="noreferrer">Яндекс.Практикум</a>
             </li>
             <li className="footer__contacts-item">
-              <a className="footer__contacts-link" href="https://github.com/irinaais" target="_blank">Github</a>
+              <a className="footer__contacts-link" href="https://github.com/irinaais" target="_blank" rel="noreferrer">Github</a>
             </li>
             <li className="footer__contacts-item">
-              <a className="footer__contacts-link" href="https://vk.com/irinaais" target="_blank">Vkontakte</a>
+              <a className="footer__contacts-link" href="https://vk.com/irinaais" target="_blank" rel="noreferrer">Vkontakte</a>
             </li>
             <li className="footer__contacts-item">
-              <a className="footer__contacts-link" href="https://t.me/Iris57" target="_blank">Telegram</a>
+              <a className="footer__contacts-link" href="https://t.me/Iris57" target="_blank" rel="noreferrer">Telegram</a>
             </li>
           </ul>
         </div>

@@ -93,7 +93,7 @@ function Register() {
               <span className="register__input-error passwordUser-input-error">{passwordError}</span>
             </div>
           </fieldset>
-          <button className="register__button register__button_signin" type="submit">Зарегистрироваться</button>
+          <button className="register__button register__button_signin" type="submit" aria-label="Зарегистрироваться">Зарегистрироваться</button>
           <h3 className="register__text-register">Уже зарегистрированы?
             <Link className="register__button register__button_text-register" to="/signin">Войти</Link>
           </h3>

@@ -35,7 +35,7 @@ function MoviesCardList() {
               <MoviesCard title="Книготорговцы" duration="1ч 42м" image={booksellers} button={cardDislikeButtonClassName}/>
               <MoviesCard title="Когда я думаю о Германии ночью" duration="1ч 42м" image={germany} button={cardDislikeButtonClassName}/>
             </ul>
-            <button className="movies-card-list__button" type="button">Ещё</button>
+            <button className="movies-card-list__button" type="button" aria-label="Кнопка Ещё">Ещё</button>
           </>
         )}
       </div>

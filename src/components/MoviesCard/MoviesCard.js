@@ -9,7 +9,7 @@ function MoviesCard(props) {
           <h3 className="movies-card__title">{props.title}</h3>
           <p className="movies-card__duration">{props.duration}</p>
         </div>
-        <button className={props.button}/>
+        <button className={props.button} aria-label="Кнопка лайка или удаления"/>
       </div>
       <img className="movies-card__image" alt={props.title} src={props.image}/>
     </li>

@@ -17,13 +17,13 @@ function AboutMe() {
               свою дальнейшую карьеру с программированием.</p>
             <ul className="about-me__contacts-list">
               <li className="about-me__contacts-item">
-                <a className="about-me__contacts-link" href="https://github.com/irinaais" target="_blank">Github</a>
+                <a className="about-me__contacts-link" href="https://github.com/irinaais" target="_blank" rel="noreferrer">Github</a>
               </li>
               <li className="about-me__contacts-item">
-                <a className="about-me__contacts-link" href="https://vk.com/irinaais" target="_blank">Vkontakte</a>
+                <a className="about-me__contacts-link" href="https://vk.com/irinaais" target="_blank" rel="noreferrer">Vkontakte</a>
               </li>
               <li className="about-me__contacts-item">
-                <a className="about-me__contacts-link" href="https://t.me/Iris57" target="_blank">Telegram</a>
+                <a className="about-me__contacts-link" href="https://t.me/Iris57" target="_blank" rel="noreferrer">Telegram</a>
               </li>
             </ul>
           </div>

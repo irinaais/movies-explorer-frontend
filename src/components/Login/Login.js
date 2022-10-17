@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./Login.css";
 import logo from "../../images/logo.svg";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -68,7 +68,7 @@ function Login() {
               <span className="login__input-error passwordUser-input-error">{passwordError}</span>
             </div>
           </fieldset>
-          <button className="login__button login__button_signin" type="submit">Войти</button>
+          <button className="login__button login__button_signin" type="submit" aria-label="Авторизоваться">Войти</button>
           <h3 className="login__text-register">Ещё не зарегистрированы?
             <Link className="login__button login__button_text-register" to="/signup">Регистрация</Link>
           </h3>

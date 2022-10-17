@@ -10,7 +10,7 @@ function Promo() {
         <div className="promo__info">
           <h1 className="promo__title">Учебный проект студента факультета Веб&#8209;разработки.</h1>
           <p className="promo__description">Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
-          <a className="promo__button" href="https://practicum.yandex.ru/web/" target="_blank">Узнать больше</a>
+          <a className="promo__button" href="https://practicum.yandex.ru/web/" target="_blank" rel="noreferrer">Узнать больше</a>
         </div>
       </div>
     </section>
