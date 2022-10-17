@@ -13,14 +13,32 @@ function Profile(props) {
             <fieldset className="profile__info">
               <div className="profile__label">
                 <span className="profile__input-text">Имя</span>
-                <input className="profile__input profile__input_name-user" type="text" id="nameUser-input" required
-                       minLength="2" maxLength="40" name="nameUser" value={props.name || ""} disabled/>
+                <input
+                  className="profile__input profile__input_name-user"
+                  type="text" id="nameUser-input"
+                  required
+                  minLength="2"
+                  maxLength="40"
+                  name="nameUser"
+                  value={props.name || ""}
+                  disabled
+                />
                 <span className="profile__input-error nameUser-input-error"/>
               </div>
               <div className="profile__label">
                 <span className="profile__input-text">E-mail</span>
-                <input className="profile__input profile__input_email-user" type="email" id="emailUser-input" required
-                      minLength="2" maxLength="40" name="emailUser" value={props.email || ""} disabled/>
+                <input
+                  className="profile__input profile__input_email-user"
+                  type="email"
+                  id="emailUser-input"
+                  required
+                  minLength="2"
+                  maxLength="40"
+                  name="emailUser"
+                  value={props.email || ""}
+                  disabled
+                  pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,63}$"
+                />
                 <span className="profile__input-error emailUser-input-error"/>
               </div>
             </fieldset>

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import "./Register.css";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import logo from "../../images/logo.svg";
 
 function Register() {
@@ -42,27 +42,54 @@ function Register() {
     <section className="register">
       <div className="register__container">
         <Link className="register__button register__button_logo" to="/">
-          <img alt="Логотип" src={ logo } className="register__logo"/>
+          <img alt="Логотип" src={logo} className="register__logo"/>
         </Link>
         <form className="register__form">
           <h2 className="register__title">Добро пожаловать!</h2>
           <fieldset className="register__info">
             <div className="register__input-container">
               <label className="register__label">Имя</label>
-              <input className="register__input register__input_name-user" type="text" id="nameUser-input" required
-                     minLength="2" maxLength="40" name="nameUser" value={name || ""} onChange={handleChangeName}/>
+              <input
+                className="register__input register__input_name-user"
+                type="text"
+                id="nameUser-input"
+                required
+                minLength="2"
+                maxLength="40"
+                name="nameUser"
+                value={name || ""}
+                onChange={handleChangeName}
+              />
               <span className="register__input-error nameUser-input-error">{nameError}</span>
             </div>
             <div className="register__input-container">
               <label className="register__label">E-mail</label>
-              <input className="register__input register__input_email-user" type="email" id="emailUser-input" required
-                     minLength="2" maxLength="40" name="emailUser" value={email || ""} onChange={handleChangeEmail}/>
+              <input
+                className="register__input register__input_email-user"
+                type="email" id="emailUser-input"
+                required
+                minLength="2"
+                maxLength="40"
+                name="emailUser"
+                value={email || ""}
+                onChange={handleChangeEmail}
+                pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,63}$"
+              />
               <span className="register__input-error emailUser-input-error">{emailError}</span>
             </div>
             <div className="register__input-container">
               <label className="register__label">Пароль</label>
-              <input className="register__input register__input_password-user" type="password" id="passwordUser-input" required
-                     minLength="8" maxLength="40" name="passwordUser" value={password || ""} onChange={handleChangePassword}/>
+              <input
+                className="register__input register__input_password-user"
+                type="password"
+                id="passwordUser-input"
+                required
+                minLength="8"
+                maxLength="40"
+                name="passwordUser"
+                value={password || ""}
+                onChange={handleChangePassword}
+              />
               <span className="register__input-error passwordUser-input-error">{passwordError}</span>
             </div>
           </fieldset>

@@ -38,14 +38,33 @@ function Login() {
           <fieldset className="login__info">
             <div className="login__input-container">
               <label className="login__label">E-mail</label>
-              <input className="login__input login__input_email-user" type="email" id="emailUser-input" required
-                     minLength="2" maxLength="40" name="emailUser" value={email || ""} onChange={handleChangeEmail}/>
+              <input
+                className="login__input login__input_email-user"
+                type="email"
+                id="emailUser-input"
+                required
+                minLength="2"
+                maxLength="40"
+                name="emailUser"
+                value={email || ""}
+                onChange={handleChangeEmail}
+                pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,63}$"
+              />
               <span className="login__input-error emailUser-input-error">{emailError}</span>
             </div>
             <div className="login__input-container">
               <label className="login__label">Пароль</label>
-              <input className="login__input login__input_password-user" type="password" id="passwordUser-input" required
-                     minLength="8" maxLength="30" name="passwordUser" value={password || ""} onChange={handleChangePassword}/>
+              <input
+                className="login__input login__input_password-user"
+                type="password"
+                id="passwordUser-input"
+                required
+                minLength="8"
+                maxLength="30"
+                name="passwordUser"
+                value={password || ""}
+                onChange={handleChangePassword}
+              />
               <span className="login__input-error passwordUser-input-error">{passwordError}</span>
             </div>
           </fieldset>
