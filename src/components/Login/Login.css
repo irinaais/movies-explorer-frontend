@@ -62,18 +62,8 @@
     padding: 0;
 }
 
-.login__label {
+.login__input-container {
     position: relative;
-}
-
-.login__input-text {
-    position: absolute;
-    top: 0;
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 12px;
-    color: #8B8B8B;
-    margin: 0;
 }
 
 .login__input {
@@ -88,8 +78,29 @@
     background-color: #202020;
     display: block;
     padding: 17px 0 10px;
-    margin: 0 0 24px;
+    margin: 0;
     width: 100%;
+}
+
+.login__label {
+    position: absolute;
+    top: 0;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+    color: #8B8B8B;
+    margin: 0;
+}
+
+.login__input-error {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #EE3465;
+    padding: 0;
+    margin: 6px 0 0;
+    display: block;
+    min-height: 24px;
 }
 
 .login__text-register {
