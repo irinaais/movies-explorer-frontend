@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./Login.css";
 import logo from "../../images/logo.svg";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");

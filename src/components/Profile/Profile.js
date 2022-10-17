@@ -14,13 +14,13 @@ function Profile(props) {
               <div className="profile__label">
                 <span className="profile__input-text">Имя</span>
                 <input className="profile__input profile__input_name-user" type="text" id="nameUser-input" required
-                       minLength="2" maxLength="40" placeholder={props.name} name="nameUser" value={props.name || ""}/>
+                       minLength="2" maxLength="40" name="nameUser" value={props.name || ""} disabled/>
                 <span className="profile__input-error nameUser-input-error"/>
               </div>
               <div className="profile__label">
                 <span className="profile__input-text">E-mail</span>
                 <input className="profile__input profile__input_email-user" type="email" id="emailUser-input" required
-                      minLength="2" maxLength="40" placeholder={props.email} name="emailUser" value={props.email || ""}/>
+                      minLength="2" maxLength="40" name="emailUser" value={props.email || ""} disabled/>
                 <span className="profile__input-error emailUser-input-error"/>
               </div>
             </fieldset>
