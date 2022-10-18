@@ -7,12 +7,14 @@ import Footer from "../Footer/Footer";
 
 function SavedMovies(props) {
   return (
-    <section className="saved-movies">
+    <>
       <Header theme={"header_theme_dark"} loggedIn={props.loggedIn}/>
-      <SearchForm/>
-      <MoviesCardList/>
+      <main className="saved-movies">
+        <SearchForm/>
+        <MoviesCardList/>
+      </main>
       <Footer/>
-    </section>
+    </>
   );
 }
 
