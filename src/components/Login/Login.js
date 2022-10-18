@@ -42,7 +42,7 @@ function Login() {
   }
 
   return (
-    <section className="login">
+    <main className="login">
       <div className="login__container">
         <Link className="login__button login__button_logo" to="/">
           <img alt="Логотип" src={ logo } className="login__logo"/>
@@ -88,7 +88,7 @@ function Login() {
           </h3>
         </form>
       </div>
-    </section>
+    </main>
   );
 }
 
