@@ -12,15 +12,17 @@ import Footer from "../Footer/Footer";
 function Main(props) {
   // const currentUser = React.useContext(CurrentUserContext);
   return (
-    <main className="main">
+    <>
       <Header theme={"header_theme_light"} loggedIn={props.loggedIn}/>
-      <Promo/>
-      <AboutProject/>
-      <Techs/>
-      <AboutMe/>
-      <Portfolio/>
+      <main className="main">
+        <Promo/>
+        <AboutProject/>
+        <Techs/>
+        <AboutMe/>
+        <Portfolio/>
+      </main>
       <Footer/>
-    </main>
+    </>
   );
 }
 
