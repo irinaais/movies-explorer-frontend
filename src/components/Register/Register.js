@@ -56,10 +56,10 @@ function Register() {
   return (
     <main className="register">
       <div className="register__container">
-        <Link className="register__button register__button_logo" to="/">
-          <img alt="Логотип" src={ logo } className="register__logo"/>
-        </Link>
         <form ref={ formRef } className="register__form" noValidate>
+          <Link className="register__button register__button_logo" to="/">
+            <img alt="Логотип" src={ logo } className="register__logo"/>
+          </Link>
           <h2 className="register__title">Добро пожаловать!</h2>
           <fieldset className="register__info">
             <div className="register__input-container">
