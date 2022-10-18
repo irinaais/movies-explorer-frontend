@@ -6,7 +6,7 @@ function Profile(props) {
   return (
     <>
       <Header theme={"header_theme_dark"} loggedIn={props.loggedIn}/>
-      <section className="profile">
+      <main className="profile">
         <div className="profile__container">
           <form className="profile__form">
             <h2 className="profile__title">Привет, {props.name}!</h2>
@@ -48,7 +48,7 @@ function Profile(props) {
             </div>
           </form>
         </div>
-      </section>
+      </main>
     </>
   );
 }
