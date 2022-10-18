@@ -54,7 +54,7 @@ function Register() {
   }
 
   return (
-    <section className="register">
+    <main className="register">
       <div className="register__container">
         <Link className="register__button register__button_logo" to="/">
           <img alt="Логотип" src={ logo } className="register__logo"/>
@@ -114,7 +114,7 @@ function Register() {
           </h3>
         </form>
       </div>
-    </section>
+    </main>
   );
 }
 
