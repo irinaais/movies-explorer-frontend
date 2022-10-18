@@ -44,10 +44,10 @@ function Login() {
   return (
     <main className="login">
       <div className="login__container">
-        <Link className="login__button login__button_logo" to="/">
-          <img alt="Логотип" src={ logo } className="login__logo"/>
-        </Link>
         <form ref={ formRef } className="login__form" noValidate>
+          <Link className="login__button login__button_logo" to="/">
+            <img alt="Логотип" src={ logo } className="login__logo"/>
+          </Link>
           <h2 className="login__title">Рады видеть!</h2>
           <fieldset className="login__info">
             <div className="login__input-container">

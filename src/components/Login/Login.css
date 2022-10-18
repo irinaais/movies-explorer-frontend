@@ -5,9 +5,8 @@
 }
 
 .login__container {
-    max-width: 1140px;
-    min-width: 320px;
-    padding: 100px 70px;
+    width: 100%;
+    padding: 70px;
 }
 
 .login__button {
@@ -50,13 +49,13 @@
 }
 
 .login__form {
-    margin: 40px auto 0;
-    width: 396px;
+    margin: 0 auto;
+    max-width: 396px;
 }
 
 .login__title {
-    margin: 0;
     color: white;
+    margin: 40px 0 0;
     font-size: 24px;
     font-weight: 500;
     line-height: 29px;
@@ -119,11 +118,15 @@
 
 @media screen and (max-width: 1023px) and (min-width: 768px) {
     .login__container {
-        padding: 100px 186px;
+        padding: 150px 186px;
     }
 }
 
 @media screen and (max-width: 767px) {
+    .login__info {
+        margin: 80px 0 42px;
+    }
+
     .login__container {
         padding: 56px 30px 30px;
         display: flex;
@@ -136,12 +139,18 @@
         min-width: 260px;
     }
 
+    .login__button_logo {
+        display: flex;
+        justify-content: center;
+    }
+
     .login__title {
         text-align: center;
+        margin: 50px 0 0;
     }
 
     .login__button_signin {
-        margin: 267px 0 14px;
+        margin: 200px 0 14px;
         padding: 15px 0 15px;
     }
 
