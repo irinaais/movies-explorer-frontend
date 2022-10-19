@@ -1,0 +1,66 @@
+.search-form {
+    background-color: #202020;
+}
+
+.search-form__form {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.search-form__container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 80px 70px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-form__input {
+    border-radius: 8px;
+    background-color: #2F2F2F;
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    padding: 16px 0 16px 20px;
+    width: 100%;
+}
+
+.search-form__button {
+    background-image: url("../../images/lupa.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    border: none;
+    background-color: #4285f4;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    margin-top: 3px;
+    background-size: 32px 32px;
+    transition: .2s;
+}
+
+.search-form__button:hover {
+    opacity: 0.7;
+}
+
+.search-form__line {
+    border-bottom: #424242 solid 1px;
+    width: 100%;
+    padding-top: 40px;
+}
+
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    .search-form__container {
+        padding: 80px 30px 10px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .search-form__container {
+        padding: 80px 14px 10px;
+    }
+}
