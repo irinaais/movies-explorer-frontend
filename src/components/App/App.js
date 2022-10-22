@@ -15,6 +15,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [movies, setMovies] = useState({});
   const [filteredMovies, setFilteredMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     tokenCheck();
@@ -31,12 +32,14 @@ function App() {
     moviesApi
       .getAllMovies()
       .then((movies) => {
+        setIsLoading(true);
         setMovies(movies);
         const lowerCaseKeyword = keyword.toLowerCase();
         const filteredMovies = movies.filter(
           movie => movie.nameRU.toLowerCase().includes(lowerCaseKeyword)
         )
         setFilteredMovies(filteredMovies);
+        setTimeout(() => setIsLoading(false), 800);
       })
       .catch((err) => {
         console.log(err);
@@ -49,7 +52,12 @@ function App() {
       <div className="page">
         <Routes>
           <Route path="/" element={<Main loggedIn={loggedIn}/>}/>
-          <Route path="/movies" element={<Movies loggedIn={loggedIn} onSubmit={handleSearchMovie} movies={filteredMovies}/>}/>
+          <Route path="/movies" element={<Movies
+                                          loggedIn={loggedIn}
+                                          onSubmit={handleSearchMovie}
+                                          movies={filteredMovies}
+                                          isLoading={isLoading}
+          />}/>
           <Route path="/saved-movies" element={<SavedMovies loggedIn={loggedIn}/>}/>
           <Route path="/profile" element={<Profile loggedIn={loggedIn} name="Виталий" email="pochta@yandex.ru"/>}/>
           <Route path="/signin" element={<Login loggedIn={loggedIn} name="Виталий" email="pochta@yandex.ru"/>}/>
