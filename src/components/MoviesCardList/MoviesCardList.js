@@ -12,7 +12,7 @@ const cardLikeButtonClassName = "movies-card__button movies-card__button_like";
 const cardDislikeButtonClassName = "movies-card__button movies-card__button_dislike";
 const cardDeleteButtonClassName = "movies-card__button movies-card__button_delete";
 
-function MoviesCardList() {
+function MoviesCardList(props) {
   const pathName = window.location.pathname;
 
   return (
@@ -26,6 +26,10 @@ function MoviesCardList() {
           </ul>
         ) : (
           <>
+            {/*{console.log(props.movies)}*/}
+            {/*{props.movies.map((movie) => console.log(movie))}*/}
+            {/*{props.movies.map((movie) => console.log(movie.nameRU))}*/}
+            {props.movies.map((movie) => <h3 key={movie.id}>{movie.nameRU}</h3>)}
             <ul className="movies-card-list__list">
               <MoviesCard title="33 слова о дизайне" duration="1ч 42м" image={design} button={cardLikeButtonClassName}/>
               <MoviesCard title="Киноальманах «100 лет дизайна»" duration="1ч 42м" image={hundredYears} button={cardLikeButtonClassName}/>

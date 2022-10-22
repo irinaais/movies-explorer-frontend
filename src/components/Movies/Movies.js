@@ -10,8 +10,8 @@ function Movies(props) {
     <>
       <Header theme={"header_theme_dark"} loggedIn={props.loggedIn}/>
       <main className="movies">
-        <SearchForm/>
-        <MoviesCardList/>
+        <SearchForm onSubmit={props.onSubmit}/>
+        <MoviesCardList movies={props.movies}/>
       </main>
       <Footer/>
     </>

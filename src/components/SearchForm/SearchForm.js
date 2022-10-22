@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./SearchForm.css";
 import Checkbox from "../Checkbox/Checkbox";
 
-function SearchForm() {
+function SearchForm(props) {
   const [keyword, setKeyword] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [errorText, setErrorText] = useState("");
@@ -21,7 +21,7 @@ function SearchForm() {
     if (!isValid) {
       return setErrorText("Нужно ввести ключевое слово");
     }
-    console.log("Делаем запрос к апи");
+    props.onSubmit(keyword);
   }
 
   return (
