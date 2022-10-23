@@ -24,7 +24,11 @@ function MoviesCardList(props) {
         ) : (
           <>
             <ul className="movies-card-list__list">
-              <h2 className="movies-card-list__message">{props.isSearching && props.movies.length === 0 && "Ничего не найдено"}</h2>
+              {props.moviesFetched && props.movies.length === 0 && <h2 className="movies-card-list__message">Ничего не найдено</h2>}
+              {props.searchFailed &&
+                <h2 className="movies-card-list__message">
+                  Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз
+                </h2>}
               {props.movies.map((movie) => <MoviesCard
                                             key={movie.id}
                                             title={movie.nameRU}

@@ -15,7 +15,7 @@ function Movies(props) {
         {props.isLoading ? (
           <Preloader/>
         ) : (
-          <MoviesCardList movies={props.movies} isSearching={props.isSearching}/>
+          <MoviesCardList movies={props.movies} moviesFetched={props.moviesFetched} searchFailed={props.searchFailed}/>
         )}
       </main>
       <Footer/>

@@ -16,7 +16,8 @@ function App() {
   const [movies, setMovies] = useState({});
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isSearching, setIsSearching] = useState(false);
+  const [moviesFetched, setMoviesFetched] = useState(false);
+  const [searchFailed, setSearchFailed] = useState(false);
 
   useEffect(() => {
     tokenCheck();
@@ -40,10 +41,11 @@ function App() {
           movie => movie.nameRU.toLowerCase().includes(lowerCaseKeyword)
         )
         setFilteredMovies(filteredMovies);
-        setIsSearching(true);
+        setMoviesFetched(true);
         setTimeout(() => setIsLoading(false), 800);
       })
       .catch((err) => {
+        setSearchFailed(true);
         console.log(err);
         console.log(movies); //TODO убрать
       })
@@ -59,7 +61,8 @@ function App() {
                                           onSubmit={handleSearchMovie}
                                           movies={filteredMovies}
                                           isLoading={isLoading}
-                                          isSearching={isSearching}
+                                          moviesFetched={moviesFetched}
+                                          isErrorOfSearch={searchFailed}
           />}/>
           <Route path="/saved-movies" element={<SavedMovies loggedIn={loggedIn}/>}/>
           <Route path="/profile" element={<Profile loggedIn={loggedIn} name="Виталий" email="pochta@yandex.ru"/>}/>
