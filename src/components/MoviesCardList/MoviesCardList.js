@@ -37,7 +37,7 @@ function MoviesCardList(props) {
                                             button={cardDislikeButtonClassName}
               />)}
             </ul>
-            {/*<button className="movies-card-list__button" type="button" aria-label="Кнопка Ещё">Ещё</button>*/}
+            {props.movies.length > 7 && <button className="movies-card-list__button" type="button" aria-label="Кнопка Ещё">Ещё</button>}
           </>
         )}
       </div>
