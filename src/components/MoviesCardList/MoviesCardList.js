@@ -24,12 +24,14 @@ function MoviesCardList(props) {
         ) : (
           <>
             <ul className="movies-card-list__list">
+              <h2 className="movies-card-list__message">{props.isSearching && props.movies.length === 0 && "Ничего не найдено"}</h2>
               {props.movies.map((movie) => <MoviesCard
                                             key={movie.id}
                                             title={movie.nameRU}
                                             duration={movie.duration}
                                             image={`https://api.nomoreparties.co/${movie.image.formats.thumbnail.url}`}
-                                            button={cardDislikeButtonClassName}/>)}
+                                            button={cardDislikeButtonClassName}
+              />)}
             </ul>
             {/*<button className="movies-card-list__button" type="button" aria-label="Кнопка Ещё">Ещё</button>*/}
           </>
