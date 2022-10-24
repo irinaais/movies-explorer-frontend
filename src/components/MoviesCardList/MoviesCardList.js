@@ -22,7 +22,7 @@ function MoviesCardList(props) {
   />
 
   function changeDisplayedMovies() {
-    setDisplayedMovies(displayedMovies+7);
+    setDisplayedMovies(displayedMovies + 7);
   }
 
   return (
@@ -42,9 +42,7 @@ function MoviesCardList(props) {
                 Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз
               </h2>}
             <ul className="movies-card-list__list">
-              {props.movies.length > 7
-                ? props.movies.slice(0,displayedMovies).map(createMoviesCards)
-                : props.movies.map(createMoviesCards)}
+              {props.movies.slice(0, displayedMovies).map(createMoviesCards)}
             </ul>
             {props.movies.length > 7 && <button className="movies-card-list__button" type="button" aria-label="Кнопка Ещё" onClick={changeDisplayedMovies}>Ещё</button>}
           </>
