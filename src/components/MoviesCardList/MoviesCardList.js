@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import design from "../../images/33_slova_o_design.svg";
@@ -10,9 +10,9 @@ const cardDislikeButtonClassName = "movies-card__button movies-card__button_disl
 const cardDeleteButtonClassName = "movies-card__button movies-card__button_delete";
 
 function MoviesCardList(props) {
-  const [displayedMovies, setDisplayedMovies] = useState(7);
-
   const pathName = window.location.pathname;
+  const [displayedMovies, setDisplayedMovies] = useState(0);
+
   const createMoviesCards = (movie) => <MoviesCard
     key={movie.id}
     title={movie.nameRU}
@@ -22,8 +22,21 @@ function MoviesCardList(props) {
   />
 
   function changeDisplayedMovies() {
-    setDisplayedMovies(displayedMovies + 7);
+    setDisplayedMovies(displayedMovies + displayedMovies);
   }
+
+  function calcOfNumberOfDisplayedMovies() {
+    if (window.innerWidth < 768) {
+      setDisplayedMovies(5);
+    } else {
+      setDisplayedMovies(7);
+    }
+  }
+
+  useEffect(() => {
+    calcOfNumberOfDisplayedMovies();
+    window.addEventListener("resize", calcOfNumberOfDisplayedMovies);
+  }, [])
 
   return (
     <section className="movies-card-list">
