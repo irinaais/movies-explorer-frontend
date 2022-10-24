@@ -13,7 +13,7 @@
 }
 
 .movies-card-list__list {
-    margin: 0 0 50px;
+    margin: 0;
     padding: 0;
 }
 
@@ -27,6 +27,7 @@
     line-height: 15px;
     color: white;
     padding: 11px 0 9px;
+    margin-top: 50px;
 }
 
 @media screen and (max-width: 1023px) and (min-width: 768px) {
