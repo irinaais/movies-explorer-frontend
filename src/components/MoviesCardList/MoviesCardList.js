@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import design from "../../images/33_slova_o_design.svg";
@@ -10,7 +10,20 @@ const cardDislikeButtonClassName = "movies-card__button movies-card__button_disl
 const cardDeleteButtonClassName = "movies-card__button movies-card__button_delete";
 
 function MoviesCardList(props) {
+  const [displayedMovies, setDisplayedMovies] = useState(7);
+
   const pathName = window.location.pathname;
+  const createMoviesCards = (movie) => <MoviesCard
+    key={movie.id}
+    title={movie.nameRU}
+    duration={movie.duration}
+    image={`https://api.nomoreparties.co/${movie.image.formats.thumbnail.url}`}
+    button={cardDislikeButtonClassName}
+  />
+
+  function changeDisplayedMovies() {
+    setDisplayedMovies(displayedMovies+7);
+  }
 
   return (
     <section className="movies-card-list">
@@ -23,21 +36,17 @@ function MoviesCardList(props) {
           </ul>
         ) : (
           <>
+            {props.moviesFetched && props.movies.length === 0 && <h2 className="movies-card-list__message">Ничего не найдено</h2>}
+            {props.searchFailed &&
+              <h2 className="movies-card-list__message">
+                Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз
+              </h2>}
             <ul className="movies-card-list__list">
-              {props.moviesFetched && props.movies.length === 0 && <h2 className="movies-card-list__message">Ничего не найдено</h2>}
-              {props.searchFailed &&
-                <h2 className="movies-card-list__message">
-                  Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз
-                </h2>}
-              {props.movies.map((movie) => <MoviesCard
-                                            key={movie.id}
-                                            title={movie.nameRU}
-                                            duration={movie.duration}
-                                            image={`https://api.nomoreparties.co/${movie.image.formats.thumbnail.url}`}
-                                            button={cardDislikeButtonClassName}
-              />)}
+              {props.movies.length > 7
+                ? props.movies.slice(0,displayedMovies).map(createMoviesCards)
+                : props.movies.map(createMoviesCards)}
             </ul>
-            {props.movies.length > 7 && <button className="movies-card-list__button" type="button" aria-label="Кнопка Ещё">Ещё</button>}
+            {props.movies.length > 7 && <button className="movies-card-list__button" type="button" aria-label="Кнопка Ещё" onClick={changeDisplayedMovies}>Ещё</button>}
           </>
         )}
       </div>
