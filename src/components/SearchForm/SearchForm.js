@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./SearchForm.css";
 import Checkbox from "../Checkbox/Checkbox";
 
@@ -6,6 +6,10 @@ function SearchForm(props) {
   const [keyword, setKeyword] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [errorText, setErrorText] = useState("");
+
+  useEffect(() => {
+    setKeyword(localStorage.getItem("keyword"));
+  }, [])
 
   function handleChange(evt) {
     setKeyword(evt.target.value);

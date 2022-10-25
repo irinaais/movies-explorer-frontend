@@ -14,7 +14,7 @@ import * as moviesApi from "../../utils/MoviesApi";
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [movies, setMovies] = useState({});
-  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [savedFilteredMovies, setSavedFilteredMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [moviesFetched, setMoviesFetched] = useState(false);
   const [searchFailed, setSearchFailed] = useState(false);
@@ -24,15 +24,19 @@ function App() {
   }, [loggedIn]);
 
   function tokenCheck() {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       setLoggedIn(true);
     }
   }
 
+  useEffect(() => {
+    setSavedFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")));
+  }, [])
+
   function handleSearchMovie(keyword) {
     moviesApi
-      .getAllMovies()
+      .getAllMovies() //TODO запрашивать ли общий список при каждом поиске или сохранить его в переменную состояния. сделать через useEffect. Если нет в localStorage, то тогда запрос всех фильмов
       .then((movies) => {
         setIsLoading(true);
         setMovies(movies);
@@ -40,8 +44,10 @@ function App() {
         const filteredMovies = movies.filter(
           movie => movie.nameRU.toLowerCase().includes(lowerCaseKeyword)
         )
-        setFilteredMovies(filteredMovies);
-        setMoviesFetched(true);
+        setSavedFilteredMovies(filteredMovies);
+        localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies)); //сохранение в localStorage фильмов TODO вынести в отдельную функцию сохранение в localStorage
+        localStorage.setItem("keyword", keyword); //сохранение в localStorage keyword
+        setMoviesFetched(true); //поиск произошел
         setTimeout(() => setIsLoading(false), 800);
       })
       .catch((err) => {
@@ -59,7 +65,7 @@ function App() {
           <Route path="/movies" element={<Movies
                                           loggedIn={loggedIn}
                                           onSubmit={handleSearchMovie}
-                                          movies={filteredMovies}
+                                          movies={savedFilteredMovies}
                                           isLoading={isLoading}
                                           moviesFetched={moviesFetched}
                                           isErrorOfSearch={searchFailed}
