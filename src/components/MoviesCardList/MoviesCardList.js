@@ -57,7 +57,11 @@ function MoviesCardList(props) {
             <ul className="movies-card-list__list">
               {props.movies.slice(0, displayedMovies).map(createMoviesCards)}
             </ul>
-            {props.movies.length > 7 && <button className="movies-card-list__button" type="button" aria-label="Кнопка Ещё" onClick={changeDisplayedMovies}>Ещё</button>}
+            {props.movies.length > displayedMovies && <button
+                                                        className="movies-card-list__button"
+                                                        type="button"
+                                                        aria-label="Кнопка Ещё"
+                                                        onClick={changeDisplayedMovies}>Ещё</button>}
           </>
         )}
       </div>
