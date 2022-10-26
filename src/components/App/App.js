@@ -50,9 +50,17 @@ function App() {
         const lowerCaseKeyword = keyword.toLowerCase();
         const filteredMovies = movies.filter(
           movie => movie.nameRU.toLowerCase().includes(lowerCaseKeyword)
-        )
-        setSavedFilteredMovies(filteredMovies);
-        localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies)); //сохранение в localStorage фильмов TODO вынести в отдельную функцию сохранение в localStorage
+        );
+        if (isShortMovies) {
+          const shortFilteredMovies = filteredMovies.filter(
+            movie => movie.duration <= 40
+          );
+          setSavedFilteredMovies(shortFilteredMovies);
+          localStorage.setItem("filteredMovies", JSON.stringify(shortFilteredMovies)); //сохранение в localStorage результата поиска фильмов
+        } else {
+          setSavedFilteredMovies(filteredMovies);
+          localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies)); //сохранение в localStorage результата поиска фильмов
+        }
         localStorage.setItem("keyword", keyword); //сохранение в localStorage keyword
         setMoviesFetched(true); //поиск произошел
         setTimeout(() => setIsLoading(false), 800);
