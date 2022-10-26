@@ -15,7 +15,13 @@ function Movies(props) {
         {props.isLoading ? (
           <Preloader/>
         ) : (
-          <MoviesCardList movies={props.movies} moviesFetched={props.moviesFetched} searchFailed={props.searchFailed}/>
+          <MoviesCardList
+            movies={props.movies}
+            moviesFetched={props.moviesFetched}
+            searchFailed={props.searchFailed}
+            saveMovie={props.saveMovie}
+            deleteMovie={props.deleteMovie}
+          />
         )}
       </main>
       <Footer/>

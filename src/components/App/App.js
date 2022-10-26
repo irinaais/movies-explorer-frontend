@@ -9,6 +9,7 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import * as moviesApi from "../../utils/MoviesApi";
+import * as mainApi from "../../utils/MainApi";
 // import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function App() {
@@ -72,6 +73,19 @@ function App() {
       })
   }
 
+  function handleSaveMovie() { //TODO доделать
+    console.log("сохранили фильм");
+    mainApi
+      .getAllSavedMovies()
+      .then((movies) => {
+        console.log(movies);
+      })
+  }
+
+  function handleDeleteMovie() { //TODO сделать
+    console.log("удалили фильм");
+  }
+
   return (
     // <CurrentUserContext.Provider value={ currentUser }>
       <div className="page">
@@ -86,6 +100,8 @@ function App() {
                                           isErrorOfSearch={searchFailed}
                                           chooseShortMovies={handleChoosingShortMovies}
                                           isShortMovies={isShortMovies}
+                                          saveMovie={handleSaveMovie}
+                                          deleteMovie={handleDeleteMovie}
           />}/>
           <Route path="/saved-movies" element={<SavedMovies loggedIn={loggedIn}/>}/>
           <Route path="/profile" element={<Profile loggedIn={loggedIn} name="Виталий" email="pochta@yandex.ru"/>}/>

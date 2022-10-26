@@ -9,8 +9,10 @@ function MoviesCard(props) {
   function handleLikeClick() {
     if (!isLiked) {
       setIsLiked(true);
+      props.saveMovie();
     } else {
       setIsLiked(false);
+      props.deleteMovie();
     }
   }
 

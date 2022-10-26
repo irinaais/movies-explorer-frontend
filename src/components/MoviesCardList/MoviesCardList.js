@@ -19,6 +19,8 @@ function MoviesCardList(props) {
     duration={movie.duration}
     image={`https://api.nomoreparties.co/${movie.image.formats.thumbnail.url}`}
     button={cardDislikeButtonClassName}
+    saveMovie={props.saveMovie}
+    deleteMovie={props.deleteMovie}
   />
 
   function changeDisplayedMovies() {
