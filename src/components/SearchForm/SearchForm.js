@@ -48,7 +48,7 @@ function SearchForm(props) {
           </div>
           <span className="search-form__input-error keyword-input-error">{ errorText }</span>
         </form>
-        <Checkbox/>
+        <Checkbox chooseShortMovies={props.chooseShortMovies} isShortMovies={props.isShortMovies}/>
         <div className="search-form__line"/>
       </div>
     </section>

@@ -13,11 +13,12 @@ import * as moviesApi from "../../utils/MoviesApi";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [movies, setMovies] = useState({});
-  const [savedFilteredMovies, setSavedFilteredMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [moviesFetched, setMoviesFetched] = useState(false);
-  const [searchFailed, setSearchFailed] = useState(false);
+  const [movies, setMovies] = useState({}); //все фильмы от сервера
+  const [savedFilteredMovies, setSavedFilteredMovies] = useState([]); //отфильтрованные фильмы
+  const [isLoading, setIsLoading] = useState(false); //отображение прелоудера
+  const [moviesFetched, setMoviesFetched] = useState(false); //поиск фильмов был
+  const [searchFailed, setSearchFailed] = useState(false); //произошла ошибка при поиске фильма
+  const [isShortMovies, setIsShortMovies] = useState(false); //состояние чекбокса
 
   useEffect(() => {
     tokenCheck();
@@ -31,8 +32,14 @@ function App() {
   }
 
   useEffect(() => {
-    setSavedFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")));
+    setSavedFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies"))); //проверяем, есть ли в localStorage отфильтрованные фильмы
+    setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, если ли в localStorage состояние чекбокса короткометражек
   }, [])
+
+  function handleChoosingShortMovies() { //переключение чекбокса короткометражек
+    setIsShortMovies(!isShortMovies);
+    localStorage.setItem("checkbox", !isShortMovies);
+  }
 
   function handleSearchMovie(keyword) {
     moviesApi
@@ -69,6 +76,8 @@ function App() {
                                           isLoading={isLoading}
                                           moviesFetched={moviesFetched}
                                           isErrorOfSearch={searchFailed}
+                                          chooseShortMovies={handleChoosingShortMovies}
+                                          isShortMovies={isShortMovies}
           />}/>
           <Route path="/saved-movies" element={<SavedMovies loggedIn={loggedIn}/>}/>
           <Route path="/profile" element={<Profile loggedIn={loggedIn} name="Виталий" email="pochta@yandex.ru"/>}/>
