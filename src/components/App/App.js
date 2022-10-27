@@ -10,6 +10,7 @@ import Register from "../Register/Register";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import * as moviesApi from "../../utils/MoviesApi";
 import * as mainApi from "../../utils/MainApi";
+import ProtectedRoute from "../ProtectedRout/ProtectedRout";
 // import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function App() {
@@ -91,22 +92,47 @@ function App() {
       <div className="page">
         <Routes>
           <Route path="/" element={<Main loggedIn={loggedIn}/>}/>
-          <Route path="/movies" element={<Movies
-                                          loggedIn={loggedIn}
-                                          onSubmit={handleSearchMovie}
-                                          movies={savedFilteredMovies}
-                                          isLoading={isLoading}
-                                          moviesFetched={moviesFetched}
-                                          isErrorOfSearch={searchFailed}
-                                          chooseShortMovies={handleChoosingShortMovies}
-                                          isShortMovies={isShortMovies}
-                                          saveMovie={handleSaveMovie}
-                                          deleteMovie={handleDeleteMovie}
-          />}/>
-          <Route path="/saved-movies" element={<SavedMovies loggedIn={loggedIn}/>}/>
-          <Route path="/profile" element={<Profile loggedIn={loggedIn} name="Виталий" email="pochta@yandex.ru"/>}/>
-          <Route path="/signin" element={<Login loggedIn={loggedIn} name="Виталий" email="pochta@yandex.ru"/>}/>
-          <Route path="/signup" element={<Register loggedIn={loggedIn} name="Виталий" email="pochta@yandex.ru"/>}/>
+          <Route
+            path="/movies"
+            element={
+              <ProtectedRoute loggedIn={loggedIn}>
+                <Movies
+                  loggedIn={loggedIn}
+                  onSubmit={handleSearchMovie}
+                  movies={savedFilteredMovies}
+                  isLoading={isLoading}
+                  moviesFetched={moviesFetched}
+                  isErrorOfSearch={searchFailed}
+                  chooseShortMovies={handleChoosingShortMovies}
+                  isShortMovies={isShortMovies}
+                  saveMovie={handleSaveMovie}
+                  deleteMovie={handleDeleteMovie}
+                />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/saved-movies"
+            element={
+              <ProtectedRoute loggedIn={loggedIn}>
+                <SavedMovies loggedIn={loggedIn}/>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute loggedIn={loggedIn}>
+                <Profile
+                  loggedIn={loggedIn}
+                  name="Виталий"
+                  email="pochta@yandex.ru"
+                />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/signin" element={<Login name="Виталий" email="pochta@yandex.ru"/>}/>
+          <Route path="/signup" element={<Register name="Виталий" email="pochta@yandex.ru"/>}/>
           <Route path="/*" element={<PageNotFound/>}/>
         </Routes>
       </div>
