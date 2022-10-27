@@ -33,6 +33,10 @@ function App() {
     }
   }
 
+  function onRegister(name, email, password) {
+    console.log(name, email, password); //TODO дописать
+  }
+
   useEffect(() => {
     setSavedFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies"))); //проверяем, есть ли в localStorage отфильтрованные фильмы
     setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, если ли в localStorage состояние чекбокса короткометражек
@@ -132,7 +136,7 @@ function App() {
             }
           />
           <Route path="/signin" element={<Login name="Виталий" email="pochta@yandex.ru"/>}/>
-          <Route path="/signup" element={<Register name="Виталий" email="pochta@yandex.ru"/>}/>
+          <Route path="/signup" element={<Register name="Виталий" email="pochta@yandex.ru" onRegister={onRegister}/>}/>
           <Route path="/*" element={<PageNotFound/>}/>
         </Routes>
       </div>
