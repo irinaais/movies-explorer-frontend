@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
@@ -10,7 +10,7 @@ import Register from "../Register/Register";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import * as moviesApi from "../../utils/MoviesApi";
 import * as mainApi from "../../utils/MainApi";
-import ProtectedRoute from "../ProtectedRout/ProtectedRout";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 // import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function App() {
@@ -21,20 +21,33 @@ function App() {
   const [moviesFetched, setMoviesFetched] = useState(false); //поиск фильмов был
   const [searchFailed, setSearchFailed] = useState(false); //произошла ошибка при поиске фильма
   const [isShortMovies, setIsShortMovies] = useState(false); //состояние чекбокса
+  const [errorOfRegister, setErrorOfRegister] = useState("");
+  const navigate = useNavigate();
 
-  useEffect(() => {
+  useEffect(() => { //TODO дописать
     tokenCheck();
   }, [loggedIn]);
 
-  function tokenCheck() {
+  function tokenCheck() { //TODO дописать
     const token = localStorage.getItem("token");
     if (token) {
       setLoggedIn(true);
     }
   }
 
-  function onRegister(name, email, password) {
-    console.log(name, email, password); //TODO дописать
+  function handleRegister(name, email, password) {
+    mainApi.register(name, email, password)
+      .then((res) => {
+        if (res.data) {
+          //авторизоваться TODO вынести авторизацию и переход на страницу Фильмы в отдельную функцию
+          setErrorOfRegister("");
+          navigate("/movies");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorOfRegister("При регистрации произошла ошибка. Попробуйте еще раз"); //TODO сделать разные тексты ошибок в зав-ти от ее типа
+      })
   }
 
   useEffect(() => {
@@ -136,7 +149,17 @@ function App() {
             }
           />
           <Route path="/signin" element={<Login name="Виталий" email="pochta@yandex.ru"/>}/>
-          <Route path="/signup" element={<Register name="Виталий" email="pochta@yandex.ru" onRegister={onRegister}/>}/>
+          <Route
+            path="/signup"
+            element={
+              <Register
+                name="Виталий"
+                email="pochta@yandex.ru"
+                onRegister={handleRegister}
+                errorOfRegister={errorOfRegister}
+              />
+            }
+          />
           <Route path="/*" element={<PageNotFound/>}/>
         </Routes>
       </div>

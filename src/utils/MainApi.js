@@ -16,3 +16,15 @@ export function getAllSavedMovies() {
   })
     .then(checkResponse);
 }
+
+export function register(name, email, password) {
+  return fetch(`${BASE_URL}/signup`, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({name, email, password})
+  })
+    .then(checkResponse)
+    .then((res) => {
+      return res;
+    })
+}

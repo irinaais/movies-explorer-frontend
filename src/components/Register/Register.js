@@ -116,8 +116,11 @@ function Register(props) {
               <span className="register__input-error passwordUser-input-error">{ passwordError }</span>
             </div>
           </fieldset>
+          <div className="register__button-error">
+            <p className="register__error-text">{props.errorOfRegister}</p>
+          </div>
           <button
-            className="register__button register__button_signin"
+            className="register__button register__button_signup"
             type="submit"
             aria-label="Зарегистрироваться"
             disabled={ isDisabled }>
