@@ -7,16 +7,6 @@ function checkResponse(res) {
   return Promise.reject(`Ошибка: ${res.status}`);
 }
 
-export function getAllSavedMovies() {
-  return fetch(`${BASE_URL}/movies`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    }
-  })
-    .then(checkResponse);
-}
-
 export function register(name, email, password) {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
@@ -27,4 +17,53 @@ export function register(name, email, password) {
     .then((res) => {
       return res;
     })
+}
+
+export function authorise(email, password) {
+  return fetch(`${BASE_URL}/signin`, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({email, password})
+  })
+    .then(checkResponse)
+    .then((data) => {
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        return data;
+      }
+    })
+}
+
+//принимает на вход JWT. Он б. отправлен на сервер и, если токен действителен, вернет ответ с инф-й о пользов-ле
+export function tokenCheck(token) {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "GET",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  })
+    .then(checkResponse)
+    .then((data) => {
+      return data;
+    })
+    .catch((err) => console.log(err));
+}
+
+// export function getUserInfo(token) {
+//   return fetch(`${BASE_URL}/users/me`, {
+//     method: "GET",
+//     headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`}
+//   })
+// }
+
+export function getAllSavedMovies() {
+  return fetch(`${BASE_URL}/movies`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  })
+    .then(checkResponse);
 }
