@@ -44,7 +44,7 @@ function Profile(props) {
             </fieldset>
             <div className="profile__buttons">
               <button className="profile__button profile__button_edit" type="button" aria-label="Редактировать профиль">Редактировать</button>
-              <button className="profile__button profile__button_exit" type="button" aria-label="Выйти из аккаунта">Выйти из аккаунта</button>
+              <button className="profile__button profile__button_exit" type="button" aria-label="Выйти из аккаунта" onClick={props.onSignOut}>Выйти из аккаунта</button>
             </div>
           </form>
         </div>
