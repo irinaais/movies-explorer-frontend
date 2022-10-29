@@ -13,7 +13,7 @@ import * as mainApi from "../../utils/MainApi";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Preloader from "../Preloader/Preloader";
 
-// import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -26,6 +26,7 @@ function App() {
   const [errorOfRegister, setErrorOfRegister] = useState("");
   const [errorOfLogin, setErrorOfLogin] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [currentUser, setCurrentUser] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => { //При загрузке страницы проверяем токен пользователя TODO дописать?
@@ -36,10 +37,11 @@ function App() {
     const token = localStorage.getItem("token");
     if (token) {
       return mainApi.tokenCheck(token)
-        .then((res) => {
-          if (res) {
+        .then((userInfo) => {
+          if (userInfo) {
             setLoggedIn(true);
             setIsLoading(false);
+            setCurrentUser(userInfo);
             return true;
             //передаем данные пользователя для отображения на сайте TODO
           } else {
@@ -90,6 +92,7 @@ function App() {
 
   function handleSignOut() { //TODO дописать?
     setLoggedIn(false);
+    setCurrentUser({});
     localStorage.clear();
     navigate("/");
   }
@@ -148,7 +151,7 @@ function App() {
   }
 
   return (
-    // <CurrentUserContext.Provider value={ currentUser }>
+    <CurrentUserContext.Provider value={ currentUser }>
       <div className="page">
         {isLoading ? (
           <Preloader/>
@@ -221,7 +224,7 @@ function App() {
           </Routes>
         )}
       </div>
-    // </CurrentUserContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
 
