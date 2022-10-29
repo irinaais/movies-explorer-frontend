@@ -191,8 +191,8 @@ function App() {
                 <ProtectedRoute loggedIn={loggedIn}>
                   <Profile
                     loggedIn={loggedIn}
-                    name="Виталий"
-                    email="pochta@yandex.ru"
+                    // name="Виталий"
+                    // email="pochta@yandex.ru"
                     onSignOut={handleSignOut}
                   />
                 </ProtectedRoute>

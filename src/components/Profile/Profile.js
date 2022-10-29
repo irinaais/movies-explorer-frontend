@@ -1,15 +1,19 @@
-import React from "react";
+import React, {useContext} from "react";
 import "./Profile.css";
 import Header from "../Header/Header";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Profile(props) {
+  const currentUser = useContext(CurrentUserContext);
+  // const [differences, setDifferences] = useState(false);
+
   return (
     <>
       <Header theme={"header_theme_dark"} loggedIn={props.loggedIn}/>
       <main className="profile">
         <div className="profile__container">
           <form className="profile__form">
-            <h2 className="profile__title">Привет, {props.name}!</h2>
+            <h2 className="profile__title">Привет, {currentUser.name}!</h2>
             <fieldset className="profile__info">
               <div className="profile__label">
                 <span className="profile__input-text">Имя</span>
@@ -20,7 +24,7 @@ function Profile(props) {
                   minLength="2"
                   maxLength="40"
                   name="nameUser"
-                  value={props.name || ""}
+                  value={currentUser.name || ""}
                   disabled
                 />
                 <span className="profile__input-error nameUser-input-error"/>
@@ -35,7 +39,7 @@ function Profile(props) {
                   minLength="2"
                   maxLength="40"
                   name="emailUser"
-                  value={props.email || ""}
+                  value={currentUser.email || ""}
                   disabled
                   pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,63}$"
                 />
@@ -46,15 +50,14 @@ function Profile(props) {
               <button
                 className="profile__button profile__button_edit"
                 type="button"
-                aria-label="Редактировать профиль">
-                Редактировать
+                aria-label="Редактировать профиль">Редактировать
+                {/*disabled={differences ? true: false}*/}
               </button>
               <button
                 className="profile__button profile__button_exit"
                 type="button"
                 aria-label="Выйти из аккаунта"
-                onClick={props.onSignOut}>
-                Выйти из аккаунта
+                onClick={props.onSignOut}>Выйти из аккаунта
               </button>
             </div>
           </form>
