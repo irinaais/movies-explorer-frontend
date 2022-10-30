@@ -68,9 +68,9 @@
     line-height: 12px;
     color: #EE3465;
     padding: 0;
-    margin: 6px 0 0;
+    margin: 0 0 6px 0;
     display: block;
-    min-height: 24px;
+    min-height: 12px;
 }
 
 .profile__input-text {

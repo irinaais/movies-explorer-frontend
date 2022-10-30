@@ -8,28 +8,29 @@ function Profile(props) {
   const formRef = useRef();
   const [name, setName] = useState(currentUser.name);
   const [email, setEmail] = useState(currentUser.email);
-  // const [nameError, setNameError] = useState("");
+  const [nameError, setNameError] = useState("");
   // const [emailError, setEmailError] = useState("");
-  // const [isValid, setIsValid] = useState(true);
+  // eslint-disable-next-line no-unused-vars
+  const [isValid, setIsValid] = useState(true);
   const [isDisabled, setIsDisabled] = useState(true);
 
-  // function validationForm() {
-  //   const formTag = formRef.current;
-  //   if (formTag.checkValidity()) {
-  //     setIsValid(true);
-  //   } else {
-  //     setIsValid(false);
-  //   }
-  // }
+  function validationForm() {
+    const formTag = formRef.current;
+    if (formTag.checkValidity()) {
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  }
 
   function handleChangeName(evt) {
     setName(evt.target.value);
-    // if (evt.target.validity.valid) {
-    //   setNameError("");
-    // } else {
-    //   setNameError("Минимум - 2 символа, максимум - 40");
-    // }
-    // validationForm();
+    if (evt.target.validity.valid) {
+      setNameError("");
+    } else {
+      setNameError("Минимум - 2 символа, максимум - 40");
+    }
+    validationForm();
   }
 
   function handleChangeEmail(evt) {
@@ -48,7 +49,7 @@ function Profile(props) {
   }
 
   useEffect(() => {
-    if (name !== currentUser.name || email !== currentUser.email) {
+    if (isValid && name !== currentUser.name || email !== currentUser.email) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
@@ -76,7 +77,7 @@ function Profile(props) {
                   defaultValue={currentUser.name}
                   onChange={handleChangeName}
                 />
-                {/*<span className="profile__input-error nameUser-input-error">{nameError}</span>*/}
+                <span className="profile__input-error nameUser-input-error">{nameError}</span>
               </div>
               <div className="profile__label">
                 <span className="profile__input-text">E-mail</span>
@@ -96,7 +97,7 @@ function Profile(props) {
               </div>
             </fieldset>
             <div className="profile__buttons">
-              {/*{console.log(isDisabled)}*/}
+              {console.log(isDisabled)}
               <button
                 className="profile__button profile__button_edit"
                 type="submit"
