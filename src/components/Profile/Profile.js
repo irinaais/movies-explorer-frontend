@@ -9,8 +9,7 @@ function Profile(props) {
   const [name, setName] = useState(currentUser.name);
   const [email, setEmail] = useState(currentUser.email);
   const [nameError, setNameError] = useState("");
-  // const [emailError, setEmailError] = useState("");
-  // eslint-disable-next-line no-unused-vars
+  const [emailError, setEmailError] = useState("");
   const [isValid, setIsValid] = useState(true);
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -35,12 +34,12 @@ function Profile(props) {
 
   function handleChangeEmail(evt) {
     setEmail(evt.target.value);
-    // if (evt.target.validity.valid) {
-    //   setEmailError("");
-    // } else {
-    //   setEmailError("Введён некорректный e-mail");
-    // }
-    // validationForm();
+    if (evt.target.validity.valid) {
+      setEmailError("");
+    } else {
+      setEmailError("Введён некорректный e-mail");
+    }
+    validationForm();
   }
 
   function handleSubmit(evt) {
@@ -49,7 +48,7 @@ function Profile(props) {
   }
 
   useEffect(() => {
-    if (isValid && name !== currentUser.name || email !== currentUser.email) {
+    if (isValid && (name !== currentUser.name || email !== currentUser.email)) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
@@ -93,11 +92,10 @@ function Profile(props) {
                   pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,63}$"
                   onChange={handleChangeEmail}
                 />
-                {/*<span className="profile__input-error emailUser-input-error">{emailError}</span>*/}
+                <span className="profile__input-error emailUser-input-error">{emailError}</span>
               </div>
             </fieldset>
             <div className="profile__buttons">
-              {console.log(isDisabled)}
               <button
                 className="profile__button profile__button_edit"
                 type="submit"
