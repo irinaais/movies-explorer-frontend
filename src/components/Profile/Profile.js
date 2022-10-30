@@ -44,7 +44,7 @@ function Profile(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    console.log('нажали кнопку редактировать');
+    props.onUpdateUser();
   }
 
   useEffect(() => {

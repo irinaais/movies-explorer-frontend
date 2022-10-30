@@ -89,6 +89,10 @@ function App() {
       });
   }
 
+  function handleUpdateProfile() {
+    console.log("нажали на кнопку обновления профиля");
+  }
+
   function handleSignOut() {
     setLoggedIn(false);
     setCurrentUser({});
@@ -192,6 +196,7 @@ function App() {
                     <Profile
                       loggedIn={loggedIn}
                       onSignOut={handleSignOut}
+                      onUpdateUser={handleUpdateProfile}
                     />
                     )}
                 </ProtectedRoute>
