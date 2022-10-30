@@ -27,7 +27,7 @@ function Profile(props) {
                   value={currentUser.name || ""}
                   disabled
                 />
-                <span className="profile__input-error nameUser-input-error"/>
+                <span className="profile__input-error nameUser-input-error">{nameError}</span>
               </div>
               <div className="profile__label">
                 <span className="profile__input-text">E-mail</span>
@@ -43,7 +43,7 @@ function Profile(props) {
                   disabled
                   pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,63}$"
                 />
-                <span className="profile__input-error emailUser-input-error"/>
+                <span className="profile__input-error emailUser-input-error">{emailError}</span>
               </div>
             </fieldset>
             <div className="profile__buttons">
@@ -51,7 +51,7 @@ function Profile(props) {
                 className="profile__button profile__button_edit"
                 type="button"
                 aria-label="Редактировать профиль">Редактировать
-                {/*disabled={differences ? true: false}*/}
+                {/*disabled={differences}*/}
               </button>
               <button
                 className="profile__button profile__button_exit"
