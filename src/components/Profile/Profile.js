@@ -1,32 +1,82 @@
-import React, {useContext} from "react";
+import React, {useContext, useState, useRef, useEffect} from "react";
 import "./Profile.css";
 import Header from "../Header/Header";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Profile(props) {
   const currentUser = useContext(CurrentUserContext);
-  // const [differences, setDifferences] = useState(false);
+  const formRef = useRef();
+  const [name, setName] = useState(currentUser.name);
+  const [email, setEmail] = useState(currentUser.email);
+  // const [nameError, setNameError] = useState("");
+  // const [emailError, setEmailError] = useState("");
+  // const [isValid, setIsValid] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  // function validationForm() {
+  //   const formTag = formRef.current;
+  //   if (formTag.checkValidity()) {
+  //     setIsValid(true);
+  //   } else {
+  //     setIsValid(false);
+  //   }
+  // }
+
+  function handleChangeName(evt) {
+    setName(evt.target.value);
+    // if (evt.target.validity.valid) {
+    //   setNameError("");
+    // } else {
+    //   setNameError("Минимум - 2 символа, максимум - 40");
+    // }
+    // validationForm();
+  }
+
+  function handleChangeEmail(evt) {
+    setEmail(evt.target.value);
+    // if (evt.target.validity.valid) {
+    //   setEmailError("");
+    // } else {
+    //   setEmailError("Введён некорректный e-mail");
+    // }
+    // validationForm();
+  }
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    console.log('нажали кнопку редактировать');
+  }
+
+  useEffect(() => {
+    if (name !== currentUser.name || email !== currentUser.email) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [name, email, currentUser.name, currentUser.email])
 
   return (
     <>
       <Header theme={"header_theme_dark"} loggedIn={props.loggedIn}/>
       <main className="profile">
         <div className="profile__container">
-          <form className="profile__form">
+          <form className="profile__form" noValidate ref={formRef} onSubmit={handleSubmit}>
             <h2 className="profile__title">Привет, {currentUser.name}!</h2>
             <fieldset className="profile__info">
               <div className="profile__label">
                 <span className="profile__input-text">Имя</span>
                 <input
                   className="profile__input profile__input_name-user"
-                  type="text" id="nameUser-input"
+                  type="text"
+                  id="nameUser-input"
                   required
                   minLength="2"
                   maxLength="40"
                   name="nameUser"
-                  value={currentUser.name || ""}
+                  defaultValue={currentUser.name}
+                  onChange={handleChangeName}
                 />
-                <span className="profile__input-error nameUser-input-error">{nameError}</span>
+                {/*<span className="profile__input-error nameUser-input-error">{nameError}</span>*/}
               </div>
               <div className="profile__label">
                 <span className="profile__input-text">E-mail</span>
@@ -38,18 +88,20 @@ function Profile(props) {
                   minLength="2"
                   maxLength="40"
                   name="emailUser"
-                  value={currentUser.email || ""}
+                  defaultValue={currentUser.email}
                   pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,63}$"
+                  onChange={handleChangeEmail}
                 />
-                <span className="profile__input-error emailUser-input-error">{emailError}</span>
+                {/*<span className="profile__input-error emailUser-input-error">{emailError}</span>*/}
               </div>
             </fieldset>
             <div className="profile__buttons">
+              {/*{console.log(isDisabled)}*/}
               <button
                 className="profile__button profile__button_edit"
-                type="button"
-                aria-label="Редактировать профиль">Редактировать
-                {/*disabled={differences}*/}
+                type="submit"
+                aria-label="Редактировать профиль"
+                disabled={isDisabled}>Редактировать
               </button>
               <button
                 className="profile__button profile__button_exit"

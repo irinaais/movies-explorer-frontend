@@ -29,7 +29,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const navigate = useNavigate();
 
-  useEffect(() => { //При загрузке страницы проверяем токен пользователя TODO дописать?
+  useEffect(() => {
     tokenCheck();
   }, [loggedIn]);
 
@@ -40,10 +40,9 @@ function App() {
         .then((userInfo) => {
           if (userInfo) {
             setLoggedIn(true);
-            setIsLoading(false);
             setCurrentUser(userInfo);
+            setIsLoading(false);
             return true;
-            //передаем данные пользователя для отображения на сайте TODO
           } else {
             localStorage.removeItem("token");
             setIsLoading(false);
@@ -90,7 +89,7 @@ function App() {
       });
   }
 
-  function handleSignOut() { //TODO дописать?
+  function handleSignOut() {
     setLoggedIn(false);
     setCurrentUser({});
     localStorage.clear();
@@ -189,12 +188,12 @@ function App() {
               path="/profile"
               element={
                 <ProtectedRoute loggedIn={loggedIn}>
-                  <Profile
-                    loggedIn={loggedIn}
-                    // name="Виталий"
-                    // email="pochta@yandex.ru"
-                    onSignOut={handleSignOut}
-                  />
+                  {currentUser && (
+                    <Profile
+                      loggedIn={loggedIn}
+                      onSignOut={handleSignOut}
+                    />
+                    )}
                 </ProtectedRoute>
               }
             />

@@ -111,6 +111,10 @@
     color: white;
 }
 
+.profile__button_edit:disabled {
+    color: #c2c2c2;
+}
+
 .profile__button_exit {
     font-weight: 500;
     color: #EE3465;
