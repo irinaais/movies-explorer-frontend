@@ -89,8 +89,8 @@ function App() {
       });
   }
 
-  function handleUpdateProfile() {
-    console.log("нажали на кнопку обновления профиля");
+  function handleUpdateProfile(name, email) {
+    console.log(name, email);
   }
 
   function handleSignOut() {

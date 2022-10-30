@@ -44,7 +44,7 @@ function Profile(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    props.onUpdateUser();
+    props.onUpdateUser(name, email);
   }
 
   useEffect(() => {
