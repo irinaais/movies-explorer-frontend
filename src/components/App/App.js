@@ -90,7 +90,10 @@ function App() {
   }
 
   function handleUpdateProfile(name, email) {
-    console.log(name, email);
+    mainApi.updateProfile(name,email)
+      .then((userInfo) => {
+        setCurrentUser(userInfo);
+      })
   }
 
   function handleSignOut() {

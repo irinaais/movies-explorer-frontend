@@ -51,6 +51,20 @@ export function tokenCheck(token) {
     .catch((err) => console.log(err));
 }
 
+export function updateProfile(name, email) {
+  const token = localStorage.getItem("token");
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({name, email})
+  })
+    .then(checkResponse)
+}
+
 // export function getUserInfo(token) {
 //   return fetch(`${BASE_URL}/users/me`, {
 //     method: "GET",
