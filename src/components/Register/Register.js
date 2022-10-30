@@ -64,7 +64,7 @@ function Register(props) {
   return (
     <main className="register">
       <div className="register__container">
-        <form ref={ formRef } className="register__form" noValidate onSubmit={ handleSubmit }>
+        <form className="register__form" noValidate onSubmit={ handleSubmit } ref={ formRef }>
           <Link className="register__button register__button_logo" to="/">
             <img alt="Логотип" src={ logo } className="register__logo"/>
           </Link>
