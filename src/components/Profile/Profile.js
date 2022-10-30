@@ -25,7 +25,6 @@ function Profile(props) {
                   maxLength="40"
                   name="nameUser"
                   value={currentUser.name || ""}
-                  disabled
                 />
                 <span className="profile__input-error nameUser-input-error">{nameError}</span>
               </div>
@@ -40,7 +39,6 @@ function Profile(props) {
                   maxLength="40"
                   name="emailUser"
                   value={currentUser.email || ""}
-                  disabled
                   pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,63}$"
                 />
                 <span className="profile__input-error emailUser-input-error">{emailError}</span>
