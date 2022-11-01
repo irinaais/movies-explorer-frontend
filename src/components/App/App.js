@@ -18,7 +18,8 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [movies, setMovies] = useState({}); //все фильмы от сервера
-  const [savedFilteredMovies, setSavedFilteredMovies] = useState([]); //отфильтрованные фильмы
+  const [filteredMovies, setFilteredMovies] = useState([]); //отфильтрованные фильмы, сохраненные в
+  // localStorage, которые будут показываться на странице /movies
   const [loader, setLoader] = useState(false); //отображение прелоудера
   const [moviesFetched, setMoviesFetched] = useState(false); //поиск фильмов был
   const [searchFailed, setSearchFailed] = useState(false); //произошла ошибка при поиске фильма
@@ -27,11 +28,9 @@ function App() {
   const [errorOfLogin, setErrorOfLogin] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
+  // const [savedMovies, setSavedMovies] = useState([]);
+  // console.log(savedMovies);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    tokenCheck();
-  }, [loggedIn]);
 
   function tokenCheck() {
     const token = localStorage.getItem("token");
@@ -103,11 +102,6 @@ function App() {
     navigate("/");
   }
 
-  useEffect(() => {
-    setSavedFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")) || []); //проверяем, есть ли в localStorage отфильтрованные фильмы
-    setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, если ли в localStorage состояние чекбокса короткометражек
-  }, [])
-
   function handleChoosingShortMovies() { //переключение чекбокса короткометражек
     setIsShortMovies(!isShortMovies);
     localStorage.setItem("checkbox", !isShortMovies);
@@ -128,10 +122,10 @@ function App() {
           const shortFilteredMovies = filteredMovies.filter(
             movie => movie.duration <= 40
           );
-          setSavedFilteredMovies(shortFilteredMovies);
+          setFilteredMovies(shortFilteredMovies);
           localStorage.setItem("filteredMovies", JSON.stringify(shortFilteredMovies)); //сохранение в localStorage результата поиска фильмов
         } else {
-          setSavedFilteredMovies(filteredMovies);
+          setFilteredMovies(filteredMovies);
           localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies)); //сохранение в localStorage результата поиска фильмов
         }
         localStorage.setItem("keyword", keyword); //сохранение в localStorage keyword
@@ -144,17 +138,24 @@ function App() {
       });
   }
 
-  function handleSaveMovie() { //TODO доделать
-    mainApi
-      .getAllSavedMovies()
-      .then((movies) => {
-        console.log(movies);
-      })
+  function handleSaveMovie(movie) { //TODO доделать
+    mainApi.saveFilm(movie)
+      // .then(newMovie => setSavedMovies([newMovie, ...savedMovies]))
+      .catch((err) => console.log(err))
   }
 
   function handleDeleteMovie() { //TODO сделать
     console.log("удалили фильм");
   }
+
+  useEffect(() => {
+    tokenCheck();
+  }, [loggedIn]);
+
+  useEffect(() => {
+    setFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")) || []); //проверяем, есть ли в localStorage отфильтрованные фильмы
+    setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, если ли в localStorage состояние чекбокса короткометражек
+  }, [])
 
   return (
     <CurrentUserContext.Provider value={ currentUser }>
@@ -171,7 +172,7 @@ function App() {
                   <Movies
                     loggedIn={loggedIn}
                     onSubmit={handleSearchMovie}
-                    movies={savedFilteredMovies}
+                    movies={filteredMovies}
                     loader={loader}
                     moviesFetched={moviesFetched}
                     isErrorOfSearch={searchFailed}

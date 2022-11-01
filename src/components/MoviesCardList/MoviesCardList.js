@@ -21,6 +21,7 @@ function MoviesCardList(props) {
     button={cardDislikeButtonClassName}
     saveMovie={props.saveMovie}
     deleteMovie={props.deleteMovie}
+    movie={movie}
   />
 
   function changeDisplayedMovies() {

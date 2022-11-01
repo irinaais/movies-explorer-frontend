@@ -72,6 +72,31 @@ export function updateProfile(name, email) {
 //   })
 // }
 
+export function saveFilm(movie) {
+  const token = localStorage.getItem("token");
+  return fetch(`${BASE_URL}/movies`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      country: movie.country ?? 'country',
+      director: movie.director,
+      duration: movie.duration,
+      year: movie.year,
+      description: movie.description,
+      image: `https://api.nomoreparties.co${movie.image.url}`,
+      trailerLink: movie.trailerLink ?? `https://www.youtube.com/results?search_query=трейлер+${movie.nameRU}`,
+      nameRU: movie.nameRU,
+      nameEN: movie.nameEN,
+      thumbnail: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
+      movieId: movie.id,
+    })
+  })
+    .then(checkResponse)
+}
+
 export function getAllSavedMovies() {
   return fetch(`${BASE_URL}/movies`, {
     method: "GET",
