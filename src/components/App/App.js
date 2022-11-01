@@ -28,8 +28,7 @@ function App() {
   const [errorOfLogin, setErrorOfLogin] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
-  // const [savedMovies, setSavedMovies] = useState([]);
-  // console.log(savedMovies);
+  const [savedMovies, setSavedMovies] = useState([]);
   const navigate = useNavigate();
 
   function tokenCheck() {
@@ -150,12 +149,17 @@ function App() {
 
   useEffect(() => {
     tokenCheck();
-  }, [loggedIn]);
-
-  useEffect(() => {
     setFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")) || []); //проверяем, есть ли в localStorage отфильтрованные фильмы
     setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, если ли в localStorage состояние чекбокса короткометражек
-  }, [])
+    mainApi.getAllSavedMovies()
+      .then(movies => setSavedMovies(movies))
+  }, [loggedIn]);
+
+  // useEffect(() => {
+  //
+  //   setFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")) || []); //проверяем, есть ли в localStorage отфильтрованные фильмы
+  //   setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, если ли в localStorage состояние чекбокса короткометражек
+  // }, [])
 
   return (
     <CurrentUserContext.Provider value={ currentUser }>
