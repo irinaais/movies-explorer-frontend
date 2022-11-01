@@ -98,10 +98,12 @@ export function saveFilm(movie) {
 }
 
 export function getAllSavedMovies() {
+  const token = localStorage.getItem("token");
   return fetch(`${BASE_URL}/movies`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
     }
   })
     .then(checkResponse);
