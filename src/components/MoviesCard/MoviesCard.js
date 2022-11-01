@@ -9,7 +9,7 @@ function MoviesCard(props) {
   function handleLikeClick() {
     if (!isLiked) {
       setIsLiked(true);
-      props.saveMovie();
+      props.saveMovie(props.movie);
     } else {
       setIsLiked(false);
       props.deleteMovie();
@@ -25,7 +25,7 @@ function MoviesCard(props) {
         </div>
         <button
           className={isLiked ? "movies-card__button movies-card__button_like" : "movies-card__button movies-card__button_dislike"}
-          aria-label="Кнопка лайка или удаления"
+          aria-label="Кнопка сохранения или удаления фильма"
           type="button"
           onClick={handleLikeClick}/>
       </div>
