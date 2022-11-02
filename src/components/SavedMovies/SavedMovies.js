@@ -11,7 +11,7 @@ function SavedMovies(props) {
       <Header theme={"header_theme_dark"} loggedIn={props.loggedIn}/>
       <main className="saved-movies">
         <SearchForm/>
-        <MoviesCardList/>
+        <MoviesCardList savedMovies={props.savedMovies}/>
       </main>
       <Footer/>
     </>
