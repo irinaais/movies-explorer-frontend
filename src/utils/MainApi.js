@@ -72,7 +72,7 @@ export function updateProfile(name, email) {
 //   })
 // }
 
-export function saveFilm(movie) {
+export function saveMovie(movie) {
   const token = localStorage.getItem("token");
   return fetch(`${BASE_URL}/movies`, {
     method: "POST",

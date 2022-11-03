@@ -138,7 +138,7 @@ function App() {
   }
 
   function handleSaveMovie(movie) { //TODO доделать
-    mainApi.saveFilm(movie)
+    mainApi.saveMovie(movie)
       // .then(newMovie => setSavedMovies([newMovie, ...savedMovies]))
       .catch((err) => console.log(err))
   }
