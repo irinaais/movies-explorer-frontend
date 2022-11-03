@@ -193,7 +193,11 @@ function App() {
               path="/saved-movies"
               element={
                 <ProtectedRoute loggedIn={loggedIn}>
-                  <SavedMovies loggedIn={loggedIn} savedMovies={savedMovies}/>
+                  <SavedMovies
+                    loggedIn={loggedIn}
+                    savedMovies={savedMovies}
+                    deleteMovie={handleDeleteMovie}
+                  />
                 </ProtectedRoute>
               }
             />
