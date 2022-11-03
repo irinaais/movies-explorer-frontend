@@ -28,7 +28,7 @@ function App() {
   const [errorOfLogin, setErrorOfLogin] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
-  const [savedMovies, setSavedMovies] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]); //сохраненные через апи фильмы
   const navigate = useNavigate();
 
   function tokenCheck() {
@@ -184,6 +184,7 @@ function App() {
                     isShortMovies={isShortMovies}
                     saveMovie={handleSaveMovie}
                     deleteMovie={handleDeleteMovie}
+                    savedMovies={savedMovies}
                   />
                 </ProtectedRoute>
               }

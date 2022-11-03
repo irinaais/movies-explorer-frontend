@@ -1,20 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import "./MoviesCard.css";
 
 function MoviesCard(props) {
   const hours = Math.trunc(props.duration/60);
   const minutes = Math.trunc(props.duration - hours * 60);
-  const [isLiked, setIsLiked] = useState(false);
-
-  function handleLikeClick() {
-    if (!isLiked) {
-      setIsLiked(true);
-      props.saveMovie(props.movie);
-    } else {
-      setIsLiked(false);
-      props.deleteMovie();
-    }
-  }
 
   return (
     <li className="movies-card">
@@ -24,10 +13,10 @@ function MoviesCard(props) {
           <p className="movies-card__duration">{hours} ч {minutes} мин</p>
         </div>
         <button
-          className={isLiked ? "movies-card__button movies-card__button_like" : "movies-card__button movies-card__button_dislike"}
+          className={props.button}
           aria-label="Кнопка сохранения или удаления фильма"
           type="button"
-          onClick={handleLikeClick}/>
+          onClick={props.onLikeClick}/>
       </div>
       <img className="movies-card__image" alt={props.title} src={props.image}/>
     </li>
