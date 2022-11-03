@@ -6,16 +6,19 @@ function MoviesCardList(props) {
   const pathName = window.location.pathname;
   const [displayedMovies, setDisplayedMovies] = useState(0);
 
+  const cardLikeButtonClassName = "movies-card__button movies-card__button_like";
+  const cardDislikeButtonClassName = "movies-card__button movies-card__button_dislike";
+  const cardDeleteButtonClassName = "movies-card__button movies-card__button_delete";
+
   const createMoviesCards = (movie, isLiked) => <MoviesCard
     key={movie.id}
     title={movie.nameRU}
     duration={movie.duration}
     image={`https://api.nomoreparties.co/${movie.image.formats.thumbnail.url}`}
-    button={isLiked}
+    button={isLiked? cardLikeButtonClassName : cardDislikeButtonClassName}
     saveMovie={props.saveMovie}
-    deleteMovie={props.deleteMovie}
+    clickOnTheButton={() => handleLikeClick(isLiked, movie.id)}
     movie={movie}
-    onLikeClick={() => handleLikeClick(isLiked)}
   />
 
   const createSavedMoviesCards = (movie) => <MoviesCard //TODO исправить создание фильма в апи, что исправить тут image
@@ -23,8 +26,9 @@ function MoviesCardList(props) {
     title={movie.nameRU}
     duration={movie.duration}
     image={movie.image}
-    deleteMovie={props.deleteMovie}
+    clickOnTheButton={() => props.deleteMovie(movie._id)}
     movie={movie}
+    button={cardDeleteButtonClassName}
   />
 
   function changeDisplayedMovies() {
@@ -39,11 +43,12 @@ function MoviesCardList(props) {
     }
   }
 
-  function handleLikeClick(isLiked) {
+  function handleLikeClick(isLiked, id) {
     if (!isLiked) {
-      props.saveMovie(props.movie);
+      props.saveMovie(props.movie); // исправить TODO
     } else {
-      props.deleteMovie();
+      const savedMovie = props.savedMovies.find(savedMovie => savedMovie.movieId === id);
+      props.deleteMovie(savedMovie._id); // передаем в аргумент конвертированный id
     }
   }
 

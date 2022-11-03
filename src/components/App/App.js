@@ -137,14 +137,15 @@ function App() {
       });
   }
 
-  function handleSaveMovie(movie) { //TODO доделать
+  function handleSaveMovie(movie) { // доделать TODO
     mainApi.saveMovie(movie)
       // .then(newMovie => setSavedMovies([newMovie, ...savedMovies]))
       .catch((err) => console.log(err))
   }
 
-  function handleDeleteMovie() { //TODO сделать
-    console.log("удалили фильм");
+  function handleDeleteMovie(id) { // доделать TODO
+    mainApi.deleteMovie(id)
+      .catch((err) => console.log(err))
   }
 
   useEffect(() => {

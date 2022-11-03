@@ -97,6 +97,21 @@ export function saveMovie(movie) {
     .then(checkResponse)
 }
 
+export function deleteMovie(id) {
+  const token = localStorage.getItem("token");
+  return fetch(`${BASE_URL}/movies/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  })
+    .then(checkResponse)
+    .then((res) => {
+      return res;
+    })
+}
+
 export function getAllSavedMovies() {
   const token = localStorage.getItem("token");
   return fetch(`${BASE_URL}/movies`, {
