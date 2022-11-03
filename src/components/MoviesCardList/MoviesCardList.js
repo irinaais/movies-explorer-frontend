@@ -67,14 +67,8 @@ function MoviesCardList(props) {
         {pathName === "/saved-movies" ? (
             <>
               <ul className="movies-card-list__list">
-                {props.savedMovies.slice(0, displayedMovies).map(createSavedMoviesCards)}
+                {props.savedMovies.map(createSavedMoviesCards)}
               </ul>
-              {props.savedMovies.length > displayedMovies && <button
-                className="movies-card-list__button"
-                type="button"
-                aria-label="Кнопка Ещё"
-                onClick={changeDisplayedMovies}>Ещё</button>
-              }
             </>
         ) : (
           <>
