@@ -137,23 +137,23 @@ function App() {
       });
   }
 
-  function handleSaveMovie(movie) { // доделать TODO
+  function handleSaveMovie(movie) {
     mainApi.saveMovie(movie)
-      // .then(newMovie => setSavedMovies([newMovie, ...savedMovies]))
+      .then(newMovie => setSavedMovies([newMovie, ...savedMovies])) //изменяю состояние списка сохраненных фильмов, добавляя новый сохраненный фильм
       .catch((err) => console.log(err))
   }
 
-  function handleDeleteMovie(id) { // перепроверить TODO
+  function handleDeleteMovie(id) {
     mainApi.deleteMovie(id)
       .then(() => {
         const newSavedMovies = savedMovies.filter(savedMovie => {
-          if (id === savedMovie._id) {
+          if (id === savedMovie._id) { //создаю новый список сохраненных фильмов без того, который был удален
             return false;
           } else  {
             return true;
           }
         });
-        setSavedMovies(newSavedMovies);
+        setSavedMovies(newSavedMovies); //изменяем состояние списка сохраненных фильмов
       })
       .catch((err) => console.log(err))
   }

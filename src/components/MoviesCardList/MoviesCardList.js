@@ -14,14 +14,14 @@ function MoviesCardList(props) {
     key={movie.id}
     title={movie.nameRU}
     duration={movie.duration}
-    image={`https://api.nomoreparties.co/${movie.image.formats.thumbnail.url}`}
+    image={`https://api.nomoreparties.co${movie.image.url}`}
     button={isLiked? cardLikeButtonClassName : cardDislikeButtonClassName}
     saveMovie={props.saveMovie}
-    clickOnTheButton={() => handleLikeClick(isLiked, movie.id)}
+    clickOnTheButton={() => handleLikeClick(isLiked, movie)}
     movie={movie}
   />
 
-  const createSavedMoviesCards = (movie) => <MoviesCard //TODO исправить создание фильма в апи, что исправить тут image
+  const createSavedMoviesCards = (movie) => <MoviesCard
     key={movie._id}
     title={movie.nameRU}
     duration={movie.duration}
@@ -43,11 +43,11 @@ function MoviesCardList(props) {
     }
   }
 
-  function handleLikeClick(isLiked, id) {
+  function handleLikeClick(isLiked, movie) {
     if (!isLiked) {
-      props.saveMovie(props.movie); // исправить TODO
+      props.saveMovie(movie);
     } else {
-      const savedMovie = props.savedMovies.find(savedMovie => savedMovie.movieId === id);
+      const savedMovie = props.savedMovies.find(savedMovie => savedMovie.movieId === movie.id);
       props.deleteMovie(savedMovie._id); // передаем в аргумент конвертированный id
     }
   }
