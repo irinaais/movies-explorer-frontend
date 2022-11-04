@@ -143,8 +143,18 @@ function App() {
       .catch((err) => console.log(err))
   }
 
-  function handleDeleteMovie(id) { // доделать TODO
+  function handleDeleteMovie(id) { // перепроверить TODO
     mainApi.deleteMovie(id)
+      .then(() => {
+        const newSavedMovies = savedMovies.filter(savedMovie => {
+          if (id === savedMovie._id) {
+            return false;
+          } else  {
+            return true;
+          }
+        });
+        setSavedMovies(newSavedMovies);
+      })
       .catch((err) => console.log(err))
   }
 
