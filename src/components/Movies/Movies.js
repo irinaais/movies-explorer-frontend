@@ -11,7 +11,7 @@ function Movies(props) {
     <>
       <Header theme={"header_theme_dark"} loggedIn={props.loggedIn}/>
       <main className="movies">
-        <SearchForm onSubmit={props.onSubmit} chooseShortMovies={props.chooseShortMovies} isShortMovies={props.isShortMovies}/>
+        <SearchForm onSubmit={props.searchMovie} chooseShortMovies={props.chooseShortMovies} isShortMovies={props.isShortMovies}/>
         {props.loader ? (
           <Preloader/>
         ) : (

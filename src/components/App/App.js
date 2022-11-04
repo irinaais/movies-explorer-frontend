@@ -29,6 +29,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
   const [savedMovies, setSavedMovies] = useState([]); //сохраненные через апи фильмы
+  const [filteredSavedMovies, setFilteredSavedMovies] = useState([]);
+  const [savedMoviesFetched, setSavedMoviesFetched] = useState(false);
   const navigate = useNavigate();
 
   function tokenCheck() {
@@ -137,6 +139,23 @@ function App() {
       });
   }
 
+  function handleSearchSavedMovie(keyword) {
+    console.log(keyword)
+    const lowerCaseKeyword = keyword.toLowerCase();
+    const filteredSavedMovies = savedMovies.filter(
+      savedMovie => savedMovie.nameRU.toLowerCase().includes(lowerCaseKeyword)
+    );
+    setSavedMoviesFetched(true);
+    if (isShortMovies) {
+      const shortFilteredSavedMovies = filteredSavedMovies.filter(
+        movie => movie.duration <= 40
+      );
+      setFilteredSavedMovies(shortFilteredSavedMovies);
+    } else {
+      setFilteredSavedMovies(filteredSavedMovies);
+    }
+  }
+
   function handleSaveMovie(movie) {
     mainApi.saveMovie(movie)
       .then(newMovie => setSavedMovies([newMovie, ...savedMovies])) //изменяю состояние списка сохраненных фильмов, добавляя новый сохраненный фильм
@@ -186,7 +205,7 @@ function App() {
                 <ProtectedRoute loggedIn={loggedIn}>
                   <Movies
                     loggedIn={loggedIn}
-                    onSubmit={handleSearchMovie}
+                    searchMovie={handleSearchMovie}
                     movies={filteredMovies}
                     loader={loader}
                     moviesFetched={moviesFetched}
@@ -208,6 +227,9 @@ function App() {
                     loggedIn={loggedIn}
                     savedMovies={savedMovies}
                     deleteMovie={handleDeleteMovie}
+                    searchSavedMovie={handleSearchSavedMovie}
+                    filteredSavedMovies={filteredSavedMovies}
+                    savedMoviesFetched={savedMoviesFetched}
                   />
                 </ProtectedRoute>
               }

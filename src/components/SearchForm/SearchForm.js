@@ -6,9 +6,12 @@ function SearchForm(props) {
   const [keyword, setKeyword] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [errorText, setErrorText] = useState("");
+  const pathName = window.location.pathname;
 
   useEffect(() => {
-    setKeyword(localStorage.getItem("keyword"));
+    if (pathName === "/movies") {
+      setKeyword(localStorage.getItem("keyword"));
+    }
   }, [])
 
   function handleChange(evt) {

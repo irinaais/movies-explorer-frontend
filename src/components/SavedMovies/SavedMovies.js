@@ -10,8 +10,12 @@ function SavedMovies(props) {
     <>
       <Header theme={"header_theme_dark"} loggedIn={props.loggedIn}/>
       <main className="saved-movies">
-        <SearchForm/>
-        <MoviesCardList savedMovies={props.savedMovies} deleteMovie={props.deleteMovie}/>
+        <SearchForm onSubmit={props.searchSavedMovie}/>
+        <MoviesCardList
+          filteredSavedMovies={props.filteredSavedMovies}
+          deleteMovie={props.deleteMovie}
+          savedMoviesFetched={props.savedMoviesFetched}
+        />
       </main>
       <Footer/>
     </>
