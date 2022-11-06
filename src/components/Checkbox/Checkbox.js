@@ -7,8 +7,6 @@ function Checkbox(props) {
       <input
         className="checkbox__input"
         type="checkbox"
-        // name="toggle-films"
-        // id="toggle-films"
         onChange={props.chooseShortMovies}
         checked={props.isShortMovies}
       />

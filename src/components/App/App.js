@@ -140,7 +140,6 @@ function App() {
   }
 
   function handleSearchSavedMovie(keyword) {
-    console.log(keyword)
     const lowerCaseKeyword = keyword.toLowerCase();
     const filteredSavedMovies = savedMovies.filter(
       savedMovie => savedMovie.nameRU.toLowerCase().includes(lowerCaseKeyword)
@@ -185,12 +184,6 @@ function App() {
       .then(movies => setSavedMovies(movies))
   }, [loggedIn]);
 
-  // useEffect(() => {
-  //
-  //   setFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")) || []); //проверяем, есть ли в localStorage отфильтрованные фильмы
-  //   setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, если ли в localStorage состояние чекбокса короткометражек
-  // }, [])
-
   return (
     <CurrentUserContext.Provider value={ currentUser }>
       <div className="page">
@@ -230,6 +223,8 @@ function App() {
                     searchSavedMovie={handleSearchSavedMovie}
                     filteredSavedMovies={filteredSavedMovies}
                     savedMoviesFetched={savedMoviesFetched}
+                    chooseShortMovies={handleChoosingShortMovies}
+                    isShortMovies={isShortMovies}
                   />
                 </ProtectedRoute>
               }
