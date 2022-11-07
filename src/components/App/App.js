@@ -169,11 +169,16 @@ function App() {
 
   useEffect(() => {
     tokenCheck();
-    setFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")) || []); //проверяем, есть ли в localStorage отфильтрованные фильмы
-    setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, если ли в localStorage состояние чекбокса короткометражек
-    mainApi.getAllSavedMovies()
-      .then(movies => setSavedMovies(movies))
   }, [loggedIn]);
+
+  useEffect(() => {
+    if (loggedIn) {
+      setFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")) || []); //проверяем, есть ли в localStorage отфильтрованные фильмы
+      setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, если ли в localStorage состояние чекбокса короткометражек
+      mainApi.getAllSavedMovies()
+        .then(movies => setSavedMovies(movies))
+    }
+  }, [])
 
   return (
     <CurrentUserContext.Provider value={ currentUser }>
