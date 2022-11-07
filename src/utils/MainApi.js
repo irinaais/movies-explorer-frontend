@@ -65,13 +65,6 @@ export function updateProfile(name, email) {
     .then(checkResponse)
 }
 
-// export function getUserInfo(token) {
-//   return fetch(`${BASE_URL}/users/me`, {
-//     method: "GET",
-//     headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`}
-//   })
-// }
-
 export function saveMovie(movie) {
   const token = localStorage.getItem("token");
   return fetch(`${BASE_URL}/movies`, {

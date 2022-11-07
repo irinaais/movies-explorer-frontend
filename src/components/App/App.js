@@ -49,9 +49,7 @@ function App() {
             return false;
           }
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch(err => console.log(err));
     } else {
       setIsLoading(false);
     }
