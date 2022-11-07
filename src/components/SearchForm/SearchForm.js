@@ -24,9 +24,11 @@ function SearchForm(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    setIsValid(evt.target.closest("form").checkValidity());
+    const isValid = evt.target.closest("form").checkValidity();
+    setIsValid(isValid);
     if (!isValid) {
-      return setErrorText("Нужно ввести ключевое слово");
+      setErrorText("Нужно ввести ключевое слово");
+      return;
     }
     props.onSubmit(keyword);
   }

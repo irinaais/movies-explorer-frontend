@@ -108,7 +108,7 @@ function App() {
     localStorage.setItem("checkbox", !isShortMovies);
   }
 
-  function handleSearchMovie(keyword) { //исправить баг с поиском TODO
+  function handleSearchMovie(keyword) {
     moviesApi
       .getAllMovies() //TODO запрашивать ли общий список при каждом поиске или сохранить его в переменную состояния. сделать через useEffect. Если нет в localStorage, то тогда запрос всех фильмов
       .then((movies) => {
