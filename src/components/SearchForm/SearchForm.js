@@ -4,7 +4,6 @@ import Checkbox from "../Checkbox/Checkbox";
 
 function SearchForm(props) {
   const [keyword, setKeyword] = useState("");
-  const [isValid, setIsValid] = useState(false);
   const [errorText, setErrorText] = useState("");
   const pathName = window.location.pathname;
 
@@ -16,16 +15,15 @@ function SearchForm(props) {
 
   function handleChange(evt) {
     setKeyword(evt.target.value);
-    setIsValid(evt.target.closest("form").checkValidity());
+    const isValid = evt.target.closest("form").checkValidity();
     if (isValid) {
-      return setErrorText("");
+      setErrorText("");
     }
   }
 
   function handleSubmit(evt) {
     evt.preventDefault();
     const isValid = evt.target.closest("form").checkValidity();
-    setIsValid(isValid);
     if (!isValid) {
       setErrorText("Нужно ввести ключевое слово");
       return;
