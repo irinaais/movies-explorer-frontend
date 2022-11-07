@@ -17,7 +17,6 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [movies, setMovies] = useState({}); //все фильмы от сервера
   const [filteredMovies, setFilteredMovies] = useState([]); //отфильтрованные фильмы, сохраненные в
   // localStorage, которые будут показываться на странице /movies
   const [loader, setLoader] = useState(false); //отображение прелоудера
@@ -110,10 +109,9 @@ function App() {
 
   function handleSearchMovie(keyword) {
     moviesApi
-      .getAllMovies() //TODO запрашивать ли общий список при каждом поиске или сохранить его в переменную состояния. сделать через useEffect. Если нет в localStorage, то тогда запрос всех фильмов
+      .getAllMovies()
       .then((movies) => {
         setLoader(true); //показываем прелоадер
-        setMovies(movies); //получили фильмы
         const lowerCaseKeyword = keyword.toLowerCase();
         const filteredMovies = movies.filter(
           movie => movie.nameRU.toLowerCase().includes(lowerCaseKeyword)
@@ -135,7 +133,6 @@ function App() {
       .catch((err) => {
         setSearchFailed(true);
         console.log(err);
-        console.log(movies); //TODO убрать
       });
   }
 
@@ -164,13 +161,7 @@ function App() {
   function handleDeleteMovie(id) {
     mainApi.deleteMovie(id)
       .then(() => {
-        const newSavedMovies = savedMovies.filter(savedMovie => {
-          if (id === savedMovie._id) { //создаю новый список сохраненных фильмов без того, который был удален
-            return false;
-          } else  {
-            return true;
-          }
-        });
+        const newSavedMovies = savedMovies.filter(savedMovie => id !== savedMovie._id);
         setSavedMovies(newSavedMovies); //изменяем состояние списка сохраненных фильмов
       })
       .catch((err) => console.log(err))
