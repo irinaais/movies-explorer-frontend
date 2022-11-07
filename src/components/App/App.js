@@ -104,7 +104,7 @@ function App() {
 
   function handleChoosingShortMovies() { //переключение чекбокса короткометражек
     setIsShortMovies(!isShortMovies);
-    localStorage.setItem("checkbox", !isShortMovies);
+    localStorage.setItem("checkbox", (!isShortMovies).toString());
   }
 
   function handleSearchMovie(keyword) {
