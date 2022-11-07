@@ -89,9 +89,11 @@ function App() {
   }
 
   function handleUpdateProfile(name, email) {
+    setIsLoading(true);
     mainApi.updateProfile(name,email)
       .then((userInfo) => {
         setCurrentUser(userInfo);
+        setTimeout(() => {setIsLoading(false)}, 600);
       })
   }
 
