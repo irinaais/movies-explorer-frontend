@@ -99,6 +99,7 @@ function App() {
         setResultOfEdit("Произошла ошибка. Попробуйте еще раз");
         console.log(err);
       })
+      .finally(()=> setTimeout(() => {setResultOfEdit("")}, 2000))
   }
 
   function handleSignOut() {
