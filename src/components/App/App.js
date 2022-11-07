@@ -30,6 +30,7 @@ function App() {
   const [savedMovies, setSavedMovies] = useState([]); //сохраненные через апи фильмы
   const [filteredSavedMovies, setFilteredSavedMovies] = useState([]);
   const [savedMoviesFetched, setSavedMoviesFetched] = useState(false);
+  const [resultOfEdit, setResultOfEdit] = useState("");
   const navigate = useNavigate();
 
   function tokenCheck() {
@@ -93,7 +94,12 @@ function App() {
     mainApi.updateProfile(name,email)
       .then((userInfo) => {
         setCurrentUser(userInfo);
+        setResultOfEdit("Данные профиля успешно изменены");
         setTimeout(() => {setIsLoading(false)}, 600);
+      })
+      .catch((err) => {
+        setResultOfEdit("Произошла ошибка. Попробуйте еще раз");
+        console.log(err);
       })
   }
 
@@ -236,6 +242,7 @@ function App() {
                       loggedIn={loggedIn}
                       onSignOut={handleSignOut}
                       onUpdateUser={handleUpdateProfile}
+                      resultOfEdit={resultOfEdit}
                     />
                     )}
                 </ProtectedRoute>

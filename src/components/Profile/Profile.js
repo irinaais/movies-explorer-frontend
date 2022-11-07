@@ -95,6 +95,7 @@ function Profile(props) {
                 <span className="profile__input-error emailUser-input-error">{emailError}</span>
               </div>
             </fieldset>
+              <p className="profile__edit-text">{props.resultOfEdit}</p>
             <div className="profile__buttons">
               <button
                 className="profile__button profile__button_edit"
