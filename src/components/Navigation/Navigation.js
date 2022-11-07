@@ -16,7 +16,7 @@ function Navigation() {
     setIsPopupBurgerOpen(false);
   }
 
-  const setActive = ({ isActive }) =>
+  const setActive = (isActive) =>
     isActive ? "navigation__link navigation__link_active" : "navigation__link";
 
   return (
