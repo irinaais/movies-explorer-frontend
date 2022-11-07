@@ -4,7 +4,7 @@ import account from "../../images/account.svg";
 import { NavLink } from "react-router-dom";
 
 function PopupBurger(props) {
-  const setActive = (isActive) =>
+  const setActive = ({isActive}) =>
     isActive ? "popupBurger__link popupBurger__link_active" : "popupBurger__link";
 
   return (
