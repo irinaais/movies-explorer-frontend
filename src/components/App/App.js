@@ -139,12 +139,12 @@ function App() {
           localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies)); //сохранение в localStorage результата поиска фильмов
         }
         localStorage.setItem("keyword", keyword); //сохранение в localStorage keyword
-        setTimeout(() => setLoader(false), 800);
       })
       .catch((err) => {
         setSearchFailed(true);
         console.log(err);
-      });
+      })
+      .finally(() => setTimeout(() => setLoader(false), 800))
   }
 
   function handleSearchSavedMovie(keyword) {
