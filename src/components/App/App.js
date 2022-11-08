@@ -56,6 +56,7 @@ function App() {
   }
 
   function handleRegister(name, email, password) {
+    setIsLoading(true);
     mainApi.register(name, email, password)
       .then((res) => {
         if (res.data) {
@@ -66,10 +67,12 @@ function App() {
       .catch((err) => {
         console.log(err);
         setErrorOfRegister("При регистрации произошла ошибка. Попробуйте еще раз");
-      });
+      })
+      .finally(() => setIsLoading(false))
   }
 
   function handleLogin(email, password) {
+    setIsLoading(true);
     mainApi.authorise(email, password)
       .then((data) => {
         if (data.token) {
@@ -84,7 +87,8 @@ function App() {
       .catch((err) => {
         console.log(err);
         setErrorOfLogin("Неправильный логин или пароль");
-      });
+      })
+      .finally(() => setIsLoading(false))
   }
 
   function handleUpdateProfile(name, email) {
