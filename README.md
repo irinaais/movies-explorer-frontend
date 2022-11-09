@@ -4,8 +4,7 @@
 Использовала: `HTML`, `CSS`, `JavaScript`,`JSX`, `БЭМ (Nested)`,
 `Псевдоклассы и Псевдоэлементы`,`Flexbox`, `Grid`, `Стиль CamelCase`,
 `Адаптивная верстка`, `Webpack`,`Api`, `React.js`, `Create-react-app`,
-`React Router`, `Express`, `Node.js`, `Celebrate`, `Winston`, `Jsonwebtoken`,
-`MongoDB`, `Mongoose`, `Editorconfig`, `ESLint`, `Airbnb`, `Api`, `Jest`.
+`React Router`, `ESLint`, `Airbnb`, `Api`.
 
   
 ### Функциональность
