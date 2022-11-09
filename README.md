@@ -23,8 +23,8 @@
 
 Ссылка на макет в Figma - https://disk.yandex.ru/d/yJ6rIZ3_tO7gRw
 
-Ссылка на frontend - <a href="movies.irinaosipova.nomoredomains.sbs" target="_blank">movies.irinaosipova.nomoredomains.sbs</a>
+Ссылка на frontend - <a href="https://movies.irinaosipova.nomoredomains.sbs" target="_blank">https://movies.irinaosipova.nomoredomains.sbs</a>
 
-Ссылка на backend - <a href="api.movies.irinaosipova.nomoredomains.sbs" target="_blank">api.movies.irinaosipova.nomoredomains.sbs</a>
+Ссылка на backend - <a href="https://api.movies.irinaosipova.nomoredomains.sbs" target="_blank">https://api.movies.irinaosipova.nomoredomains.sbs</a>
 
 Публичный IP-адрес сервера - 84.201.139.124
