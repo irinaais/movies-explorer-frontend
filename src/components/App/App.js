@@ -49,7 +49,7 @@ function App() {
             return false;
           }
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(`Ошибка: ${err.status}`));
     } else {
       setIsLoading(false);
     }
@@ -65,8 +65,10 @@ function App() {
         }
       })
       .catch((err) => {
-        console.log(err);
-        setErrorOfRegister("При регистрации произошла ошибка. Попробуйте еще раз");
+        console.log(`Ошибка: ${err.status}`);
+        err.status === 409
+         ? setErrorOfRegister("Пользователь с таким email уже существует")
+         : setErrorOfRegister("При регистрации пользователя произошла ошибка")
       })
       .finally(() => setIsLoading(false))
   }
@@ -85,8 +87,14 @@ function App() {
         }
       })
       .catch((err) => {
-        console.log(err);
-        setErrorOfLogin("Неправильный логин или пароль");
+        console.log(`Ошибка: ${err.status}`);
+        if (err.status === 401) {
+          setErrorOfLogin("Вы ввели неправильный логин или пароль");
+        } else if (err.status === 400) {
+          setErrorOfLogin("При авторизации произошла ошибка. Токен не передан или передан не в том формате");
+        } else if (err.status === 403) {
+          setErrorOfLogin("При авторизации произошла ошибка. Переданный токен некорректен");
+        }
       })
       .finally(() => setIsLoading(false))
   }
@@ -100,8 +108,10 @@ function App() {
         setTimeout(() => {setIsLoading(false)}, 600);
       })
       .catch((err) => {
-        setResultOfEdit("Произошла ошибка. Попробуйте еще раз");
-        console.log(err);
+        console.log(`Ошибка: ${err.status}`);
+        err.status === 409
+          ? setResultOfEdit("Пользователь с таким email уже существует")
+          : setResultOfEdit("При обновлении профиля произошла ошибка")
       })
       .finally(()=> setTimeout(() => {setResultOfEdit("")}, 2000))
   }
@@ -142,7 +152,7 @@ function App() {
       })
       .catch((err) => {
         setSearchFailed(true);
-        console.log(err);
+        console.log(`Ошибка: ${err.status}`);
       })
       .finally(() => setTimeout(() => setLoader(false), 800))
   }
@@ -166,7 +176,7 @@ function App() {
   function handleSaveMovie(movie) {
     mainApi.saveMovie(movie)
       .then(newMovie => setSavedMovies([newMovie, ...savedMovies])) //изменяю состояние списка сохраненных фильмов, добавляя новый сохраненный фильм
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(`Ошибка: ${err.status}`))
   }
 
   function handleDeleteMovie(id) {
@@ -175,7 +185,7 @@ function App() {
         const newSavedMovies = savedMovies.filter(savedMovie => id !== savedMovie._id);
         setSavedMovies(newSavedMovies); //изменяем состояние списка сохраненных фильмов
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(`Ошибка: ${err.status}`))
   }
 
   useEffect(() => {
