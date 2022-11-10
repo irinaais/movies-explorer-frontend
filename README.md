@@ -20,6 +20,8 @@
 ### Планы по доработке
 * рефакторинг кода
 
+Ссылка на пул-реквест - [https://github.com/irinaais/movies-explorer-frontend/pull/2](https://github.com/irinaais/movies-explorer-frontend/pull/2)
+
 Ссылка на макет в Figma - https://disk.yandex.ru/d/yJ6rIZ3_tO7gRw
 
 Ссылка на frontend - movies.irinaosipova.nomoredomains.sbs
