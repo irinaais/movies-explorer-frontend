@@ -45,10 +45,6 @@ export function tokenCheck(token) {
     }
   })
     .then(checkResponse)
-    .then((data) => {
-      return data;
-    })
-    .catch((err) => console.log(err));
 }
 
 export function updateProfile(name, email) {
