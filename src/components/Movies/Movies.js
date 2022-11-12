@@ -9,7 +9,7 @@ import Preloader from "../Preloader/Preloader";
 function Movies(props) {
   return (
     <>
-      <Header theme={"header_theme_dark"} loggedIn={props.loggedIn}/>
+      <Header theme={"header_theme_dark"} loggedIn={props.loggedIn} openSavedMovies={props.openSavedMovies}/>
       <main className="movies">
         <SearchForm
           onSubmit={props.searchMovie}

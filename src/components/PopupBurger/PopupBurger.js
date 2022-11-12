@@ -14,7 +14,7 @@ function PopupBurger(props) {
         <div className="popupBurger__links">
           <NavLink to="/" className={ setActive }>Главная</NavLink>
           <NavLink to="/movies" className={ setActive }>Фильмы</NavLink>
-          <NavLink to="/saved-movies" className={ setActive }>Сохранённые фильмы</NavLink>
+          <NavLink to="/saved-movies" className={ setActive } onClick={props.openSavedMovies}>Сохранённые фильмы</NavLink>
         </div>
         <NavLink to="/profile" className="popupBurger__profile">Аккаунт
           <img className="popupBurger__profile-image" src={account} alt="Кнопка Аккаунт"/>

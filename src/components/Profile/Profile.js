@@ -57,7 +57,7 @@ function Profile(props) {
 
   return (
     <>
-      <Header theme={"header_theme_dark"} loggedIn={props.loggedIn}/>
+      <Header theme={"header_theme_dark"} loggedIn={props.loggedIn} openSavedMovies={props.openSavedMovies}/>
       <main className="profile">
         <div className="profile__container">
           <form className="profile__form" noValidate ref={formRef} onSubmit={handleSubmit}>

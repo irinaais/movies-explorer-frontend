@@ -8,7 +8,7 @@ import Footer from "../Footer/Footer";
 function SavedMovies(props) {
   return (
     <>
-      <Header theme={"header_theme_dark"} loggedIn={props.loggedIn}/>
+      <Header theme={"header_theme_dark"} loggedIn={props.loggedIn} openSavedMovies={props.openSavedMovies}/>
       <main className="saved-movies">
         <SearchForm
           onSubmit={props.searchSavedMovie}

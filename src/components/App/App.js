@@ -189,6 +189,10 @@ function App() {
       .catch((err) => console.log(`Ошибка: ${err.status}`))
   }
 
+  function handleOpenSavedMovies() {
+    setFilteredSavedMovies(savedMovies);
+  }
+
   useEffect(() => {
     tokenCheck();
     if (loggedIn) {
@@ -209,7 +213,7 @@ function App() {
           <Preloader/>
         ) : (
           <Routes>
-            <Route path="/" element={<Main loggedIn={loggedIn}/>}/>
+            <Route path="/" element={<Main loggedIn={loggedIn} openSavedMovies={handleOpenSavedMovies}/>}/>
             <Route
               path="/movies"
               element={
@@ -226,6 +230,7 @@ function App() {
                     saveMovie={handleSaveMovie}
                     deleteMovie={handleDeleteMovie}
                     savedMovies={savedMovies}
+                    openSavedMovies={handleOpenSavedMovies}
                   />
                 </ProtectedRoute>
               }
@@ -243,6 +248,7 @@ function App() {
                     savedMoviesFetched={savedMoviesFetched}
                     chooseShortMovies={handleChoosingShortMovies}
                     isShortMovies={isShortMovies}
+                    openSavedMovies={handleOpenSavedMovies}
                   />
                 </ProtectedRoute>
               }
@@ -257,6 +263,7 @@ function App() {
                       onSignOut={handleSignOut}
                       onUpdateUser={handleUpdateProfile}
                       resultOfEdit={resultOfEdit}
+                      openSavedMovies={handleOpenSavedMovies}
                     />
                     )}
                 </ProtectedRoute>

@@ -5,7 +5,7 @@ import account from "../../images/account.svg";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import PopupBurger from "../PopupBurger/PopupBurger";
 
-function Navigation() {
+function Navigation(props) {
   const [isPopupBurgerOpen, setIsPopupBurgerOpen] = useState(false);
 
   function handleBurgerMenuOpenClick() {
@@ -23,13 +23,13 @@ function Navigation() {
     <section className="navigation">
       <div className="navigation__links">
         <NavLink to="/movies" className={ setActive }>Фильмы</NavLink>
-        <NavLink to="/saved-movies" className={ setActive }>Сохранённые фильмы</NavLink>
+        <NavLink to="/saved-movies" className={ setActive } onClick={props.openSavedMovies}>Сохранённые фильмы</NavLink>
       </div>
       <NavLink to="/profile" className="navigation__profile">Аккаунт
         <img className="navigation__profile-image" src={account} alt="Кнопка Аккаунт"/>
       </NavLink>
       <BurgerMenu onClick={ handleBurgerMenuOpenClick }/>
-      <PopupBurger isOpen={ isPopupBurgerOpen } isClose={ handleBurgerMenuCloseClick }/>
+      <PopupBurger isOpen={ isPopupBurgerOpen } isClose={ handleBurgerMenuCloseClick } openSavedMovies={props.openSavedMovies}/>
     </section>
   );
 }
