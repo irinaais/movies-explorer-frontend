@@ -184,6 +184,7 @@ function App() {
       .then(() => {
         const newSavedMovies = savedMovies.filter(savedMovie => id !== savedMovie._id);
         setSavedMovies(newSavedMovies); //изменяем состояние списка сохраненных фильмов
+        setFilteredSavedMovies(filteredSavedMovies.filter(movie => movie._id !== id));
       })
       .catch((err) => console.log(`Ошибка: ${err.status}`))
   }
@@ -194,7 +195,10 @@ function App() {
       setFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")) || []); //проверяем, есть ли в localStorage отфильтрованные фильмы
       setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, если ли в localStorage состояние чекбокса короткометражек
       mainApi.getAllSavedMovies()
-        .then(movies => setSavedMovies(movies))
+        .then(movies => {
+          setSavedMovies(movies);
+          setFilteredSavedMovies(movies);
+        });
     }
   }, [loggedIn]);
 
@@ -233,9 +237,9 @@ function App() {
                   <SavedMovies
                     loggedIn={loggedIn}
                     savedMovies={savedMovies}
+                    filteredSavedMovies={filteredSavedMovies}
                     deleteMovie={handleDeleteMovie}
                     searchSavedMovie={handleSearchSavedMovie}
-                    filteredSavedMovies={filteredSavedMovies}
                     savedMoviesFetched={savedMoviesFetched}
                     chooseShortMovies={handleChoosingShortMovies}
                     isShortMovies={isShortMovies}
