@@ -27,10 +27,12 @@ function App() {
   const [errorOfLogin, setErrorOfLogin] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
-  const [savedMovies, setSavedMovies] = useState([]); //сохраненные через апи фильмы TODO нужно ли убрать переменные, передаваемые в пропсах в savedMovies
+  const [savedMovies, setSavedMovies] = useState([]); //сохраненные через апи фильмы
   const [filteredSavedMovies, setFilteredSavedMovies] = useState([]);
   const [savedMoviesFetched, setSavedMoviesFetched] = useState(false);
   const [resultOfEdit, setResultOfEdit] = useState("");
+  const [allMovies, setAllMovies] = useState([]);
+  const [keyword, setKeyword] = useState("");
   const navigate = useNavigate();
 
   function tokenCheck() {
@@ -125,7 +127,6 @@ function App() {
 
   function handleChoosingShortMovies() { //переключение чекбокса короткометражек
     setIsShortMovies(!isShortMovies);
-    localStorage.setItem("checkbox", (!isShortMovies).toString());
   }
 
   function handleSearchMovie(keyword) {
@@ -133,22 +134,10 @@ function App() {
       .getAllMovies()
       .then((movies) => {
         setLoader(true); //показываем прелоадер
-        const lowerCaseKeyword = keyword.toLowerCase();
-        const filteredMovies = movies.filter(
-          movie => movie.nameRU.toLowerCase().includes(lowerCaseKeyword)
-        );
+        setAllMovies(movies);
+        localStorage.setItem("allMovies", JSON.stringify(allMovies));
+        setKeyword(keyword);
         setMoviesFetched(true); //поиск произошел
-        if (isShortMovies) { //если включен фильтр короткометражек
-          const shortFilteredMovies = filteredMovies.filter(
-            movie => movie.duration <= 40
-          );
-          setFilteredMovies(shortFilteredMovies);
-          localStorage.setItem("filteredMovies", JSON.stringify(shortFilteredMovies)); //сохранение в localStorage результата поиска фильмов
-        } else {
-          setFilteredMovies(filteredMovies);
-          localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies)); //сохранение в localStorage результата поиска фильмов
-        }
-        localStorage.setItem("keyword", keyword); //сохранение в localStorage keyword
       })
       .catch((err) => {
         setSearchFailed(true);
@@ -189,15 +178,20 @@ function App() {
       .catch((err) => console.log(`Ошибка: ${err.status}`))
   }
 
-  function handleOpenSavedMovies() {
+  function handleOpenSavedMovies() { //при переходе на /saved-movies отображаются сначала все сохраненные фильмы
     setFilteredSavedMovies(savedMovies);
   }
 
   useEffect(() => {
+    setFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")) || []); //проверяем, есть ли в localStorage отфильтрованные фильмы
+    setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, если ли в localStorage состояние чекбокса короткометражек
+    setKeyword(localStorage.getItem("keyword"));
+    setAllMovies(JSON.parse(localStorage.getItem("allMovies")) || []);
+  }, []);
+
+  useEffect(() => {
     tokenCheck();
     if (loggedIn) {
-      setFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")) || []); //проверяем, есть ли в localStorage отфильтрованные фильмы
-      setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, если ли в localStorage состояние чекбокса короткометражек
       mainApi.getAllSavedMovies()
         .then(movies => {
           setSavedMovies(movies);
@@ -205,6 +199,21 @@ function App() {
         });
     }
   }, [loggedIn]);
+
+  useEffect(() => {
+    const lowerCaseKeyword = keyword.toLowerCase();
+    let filteredMovies = allMovies.filter(
+      movie => movie.nameRU.toLowerCase().includes(lowerCaseKeyword)
+    );
+    if (isShortMovies) {
+      filteredMovies = filteredMovies.filter(movie => movie.duration <= 40);
+    }
+
+    setFilteredMovies(filteredMovies);
+    localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies)); //сохранение в localStorage результата поиска фильмов
+    localStorage.setItem("keyword", keyword);
+    localStorage.setItem("checkbox", (isShortMovies).toString()); //сохранение в localStorage состояния чекбокса
+  }, [allMovies, keyword, isShortMovies]);
 
   return (
     <CurrentUserContext.Provider value={ currentUser }>
