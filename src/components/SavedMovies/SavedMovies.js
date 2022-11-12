@@ -16,6 +16,7 @@ function SavedMovies(props) {
           isShortMovies={props.isShortMovies}
         />
         <MoviesCardList
+          savedMovies={props.savedMovies}
           filteredSavedMovies={props.filteredSavedMovies}
           deleteMovie={props.deleteMovie}
           savedMoviesFetched={props.savedMoviesFetched}

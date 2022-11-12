@@ -64,7 +64,7 @@ function MoviesCardList(props) {
             <>
               {props.savedMoviesFetched && props.filteredSavedMovies.length === 0 && <h2 className="movies-card-list__message">Ничего не найдено</h2>}
               <ul className="movies-card-list__list">
-                {props.filteredSavedMovies.map(createSavedMoviesCards)}
+                {props.savedMovies.map(createSavedMoviesCards)}
               </ul>
             </>
         ) : (

@@ -27,7 +27,7 @@ function App() {
   const [errorOfLogin, setErrorOfLogin] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
-  const [savedMovies, setSavedMovies] = useState([]); //сохраненные через апи фильмы
+  const [savedMovies, setSavedMovies] = useState([]); //сохраненные через апи фильмы TODO нужно ли убрать переменные, передаваемые в пропсах в savedMovies
   const [filteredSavedMovies, setFilteredSavedMovies] = useState([]);
   const [savedMoviesFetched, setSavedMoviesFetched] = useState(false);
   const [resultOfEdit, setResultOfEdit] = useState("");
