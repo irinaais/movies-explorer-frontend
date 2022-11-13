@@ -22,7 +22,8 @@ function App() {
   const [loader, setLoader] = useState(false); //отображение прелоудера
   const [moviesFetched, setMoviesFetched] = useState(false); //поиск фильмов был
   const [searchFailed, setSearchFailed] = useState(false); //произошла ошибка при поиске фильма
-  const [isShortMovies, setIsShortMovies] = useState(false); //состояние чекбокса
+  const [isShortMovies, setIsShortMovies] = useState(false); //состояние чекбокса на странице /movies
+  const [isShortSavedMovies, setIsShortSavedMovies] = useState(false); //состояние чекбокса на странице /saved-movies
   const [errorOfRegister, setErrorOfRegister] = useState("");
   const [errorOfLogin, setErrorOfLogin] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -125,8 +126,12 @@ function App() {
     navigate("/");
   }
 
-  function handleChoosingShortMovies() { //переключение чекбокса короткометражек
+  function handleChoosingShortMovies() { //переключение чекбокса короткометражек на странице /movies
     setIsShortMovies(!isShortMovies);
+  }
+
+  function handleChoosingShortSavedMovies() { //переключение чекбокса короткометражек на странице /saved-movies
+    setIsShortSavedMovies(!isShortSavedMovies);
   }
 
   function handleSearchMovie(keyword) {
@@ -152,7 +157,7 @@ function App() {
       savedMovie => savedMovie.nameRU.toLowerCase().includes(lowerCaseKeyword)
     );
     setSavedMoviesFetched(true);
-    if (isShortMovies) {
+    if (isShortSavedMovies) {
       const shortFilteredSavedMovies = filteredSavedMovies.filter(
         movie => movie.duration <= 40
       );
@@ -180,11 +185,13 @@ function App() {
 
   function handleOpenSavedMovies() { //при переходе на /saved-movies отображаются сначала все сохраненные фильмы
     setFilteredSavedMovies(savedMovies);
+    setIsShortSavedMovies(false);
   }
 
   useEffect(() => {
     setFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")) || []); //проверяем, есть ли в localStorage отфильтрованные фильмы
     setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, если ли в localStorage состояние чекбокса короткометражек
+    setIsShortSavedMovies(localStorage.getItem("checkboxSavedMovies") === "true"); //проверяем, если ли в localStorage состояние чекбокса короткометражек
     setKeyword(localStorage.getItem("keyword"));
     setAllMovies(JSON.parse(localStorage.getItem("allMovies")) || []);
   }, []);
@@ -208,12 +215,28 @@ function App() {
     if (isShortMovies) {
       filteredMovies = filteredMovies.filter(movie => movie.duration <= 40);
     }
-
     setFilteredMovies(filteredMovies);
     localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies)); //сохранение в localStorage результата поиска фильмов
     localStorage.setItem("keyword", keyword);
     localStorage.setItem("checkbox", (isShortMovies).toString()); //сохранение в localStorage состояния чекбокса
   }, [allMovies, keyword, isShortMovies]);
+
+  useEffect(() => {
+    const lowerCaseKeyword = keyword.toLowerCase();
+    const filteredSavedMovies = savedMovies.filter(
+      savedMovie => savedMovie.nameRU.toLowerCase().includes(lowerCaseKeyword)
+    );
+    setSavedMoviesFetched(true);
+    if (isShortSavedMovies) {
+      const shortFilteredSavedMovies = filteredSavedMovies.filter(
+        movie => movie.duration <= 40
+      );
+      setFilteredSavedMovies(shortFilteredSavedMovies);
+    } else {
+      setFilteredSavedMovies(filteredSavedMovies);
+    }
+    localStorage.setItem("checkboxSavedMovies", (isShortSavedMovies).toString()); //сохранение в localStorage состояния чекбокса
+  }, [savedMovies, keyword, isShortSavedMovies]);
 
   return (
     <CurrentUserContext.Provider value={ currentUser }>
@@ -255,8 +278,8 @@ function App() {
                     deleteMovie={handleDeleteMovie}
                     searchSavedMovie={handleSearchSavedMovie}
                     savedMoviesFetched={savedMoviesFetched}
-                    chooseShortMovies={handleChoosingShortMovies}
-                    isShortMovies={isShortMovies}
+                    chooseShortMovies={handleChoosingShortSavedMovies}
+                    isShortMovies={isShortSavedMovies}
                     openSavedMovies={handleOpenSavedMovies}
                   />
                 </ProtectedRoute>
