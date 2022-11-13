@@ -141,7 +141,7 @@ function App() {
       .then((movies) => {
         setLoader(true); //показываем прелоадер
         setAllMovies(movies);
-        localStorage.setItem("allMovies", JSON.stringify(allMovies));
+        localStorage.setItem("allMovies", JSON.stringify(movies));
         setKeyword(keyword);
         setMoviesFetched(true); //поиск произошел
       })
