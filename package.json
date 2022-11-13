@@ -17,7 +17,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && scp -r ./build/* irinaais90@84.201.139.124:/home/irinaais90/movies-frontend"
+    "delete files": "ssh irinaais90@84.201.139.124 rm -r movies-frontend/*",
+    "deploy": "npm run build && scp -r ./build/* irinaais90@84.201.139.124:/home/irinaais90/movies-frontend",
+    "delete files & deploy": "npm run build && ssh irinaais90@84.201.139.124 rm -r movies-frontend/* && scp -r ./build/* irinaais90@84.201.139.124:/home/irinaais90/movies-frontend"
   },
   "eslintConfig": {
     "extends": [
