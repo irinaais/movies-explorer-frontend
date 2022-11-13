@@ -34,6 +34,7 @@ function App() {
   const [resultOfEdit, setResultOfEdit] = useState("");
   const [allMovies, setAllMovies] = useState([]);
   const [keyword, setKeyword] = useState("");
+  const [keywordForSavedMovies, setKeywordForSavedMovies] = useState("");
   const navigate = useNavigate();
 
   function tokenCheck() {
@@ -151,20 +152,8 @@ function App() {
       .finally(() => setTimeout(() => setLoader(false), 800))
   }
 
-  function handleSearchSavedMovie(keyword) {
-    const lowerCaseKeyword = keyword.toLowerCase();
-    const filteredSavedMovies = savedMovies.filter(
-      savedMovie => savedMovie.nameRU.toLowerCase().includes(lowerCaseKeyword)
-    );
-    setSavedMoviesFetched(true);
-    if (isShortSavedMovies) {
-      const shortFilteredSavedMovies = filteredSavedMovies.filter(
-        movie => movie.duration <= 40
-      );
-      setFilteredSavedMovies(shortFilteredSavedMovies);
-    } else {
-      setFilteredSavedMovies(filteredSavedMovies);
-    }
+  function handleSearchSavedMovie(keywordForSavedMovies) {
+    setKeywordForSavedMovies(keywordForSavedMovies);
   }
 
   function handleSaveMovie(movie) {
@@ -178,20 +167,18 @@ function App() {
       .then(() => {
         const newSavedMovies = savedMovies.filter(savedMovie => id !== savedMovie._id);
         setSavedMovies(newSavedMovies); //изменяем состояние списка сохраненных фильмов
-        setFilteredSavedMovies(filteredSavedMovies.filter(movie => movie._id !== id));
       })
       .catch((err) => console.log(`Ошибка: ${err.status}`))
   }
 
   function handleOpenSavedMovies() { //при переходе на /saved-movies отображаются сначала все сохраненные фильмы
-    setFilteredSavedMovies(savedMovies);
     setIsShortSavedMovies(false);
+    setKeywordForSavedMovies("");
   }
 
   useEffect(() => {
     setFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")) || []); //проверяем, есть ли в localStorage отфильтрованные фильмы
-    setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, если ли в localStorage состояние чекбокса короткометражек
-    setIsShortSavedMovies(localStorage.getItem("checkboxSavedMovies") === "true"); //проверяем, если ли в localStorage состояние чекбокса короткометражек
+    setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, есть ли в localStorage состояние чекбокса короткометражек
     setKeyword(localStorage.getItem("keyword"));
     setAllMovies(JSON.parse(localStorage.getItem("allMovies")) || []);
   }, []);
@@ -202,7 +189,6 @@ function App() {
       mainApi.getAllSavedMovies()
         .then(movies => {
           setSavedMovies(movies);
-          setFilteredSavedMovies(movies);
         });
     }
   }, [loggedIn]);
@@ -222,21 +208,18 @@ function App() {
   }, [allMovies, keyword, isShortMovies]);
 
   useEffect(() => {
-    const lowerCaseKeyword = keyword.toLowerCase();
-    const filteredSavedMovies = savedMovies.filter(
+    const lowerCaseKeyword = keywordForSavedMovies.toLowerCase();
+    let filteredSavedMovies = savedMovies.filter(
       savedMovie => savedMovie.nameRU.toLowerCase().includes(lowerCaseKeyword)
     );
-    setSavedMoviesFetched(true);
     if (isShortSavedMovies) {
-      const shortFilteredSavedMovies = filteredSavedMovies.filter(
+      filteredSavedMovies = filteredSavedMovies.filter(
         movie => movie.duration <= 40
       );
-      setFilteredSavedMovies(shortFilteredSavedMovies);
-    } else {
-      setFilteredSavedMovies(filteredSavedMovies);
     }
-    localStorage.setItem("checkboxSavedMovies", (isShortSavedMovies).toString()); //сохранение в localStorage состояния чекбокса
-  }, [savedMovies, keyword, isShortSavedMovies]);
+    setFilteredSavedMovies(filteredSavedMovies);
+    setSavedMoviesFetched(true);
+  }, [savedMovies, keywordForSavedMovies, isShortSavedMovies]);
 
   return (
     <CurrentUserContext.Provider value={ currentUser }>
