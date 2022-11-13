@@ -179,7 +179,7 @@ function App() {
   useEffect(() => {
     setFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")) || []); //проверяем, есть ли в localStorage отфильтрованные фильмы
     setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, есть ли в localStorage состояние чекбокса короткометражек
-    setKeyword(localStorage.getItem("keyword"));
+    setKeyword(localStorage.getItem("keyword") || "");
     setAllMovies(JSON.parse(localStorage.getItem("allMovies")) || []);
   }, []);
 
@@ -194,6 +194,7 @@ function App() {
   }, [loggedIn]);
 
   useEffect(() => {
+    if (!loggedIn) return;
     const lowerCaseKeyword = keyword.toLowerCase();
     let filteredMovies = allMovies.filter(
       movie => movie.nameRU.toLowerCase().includes(lowerCaseKeyword)
@@ -205,9 +206,10 @@ function App() {
     localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies)); //сохранение в localStorage результата поиска фильмов
     localStorage.setItem("keyword", keyword);
     localStorage.setItem("checkbox", (isShortMovies).toString()); //сохранение в localStorage состояния чекбокса
-  }, [allMovies, keyword, isShortMovies]);
+  }, [allMovies, keyword, isShortMovies, loggedIn]);
 
   useEffect(() => {
+    if (!loggedIn) return;
     const lowerCaseKeyword = keywordForSavedMovies.toLowerCase();
     let filteredSavedMovies = savedMovies.filter(
       savedMovie => savedMovie.nameRU.toLowerCase().includes(lowerCaseKeyword)
@@ -219,7 +221,7 @@ function App() {
     }
     setFilteredSavedMovies(filteredSavedMovies);
     setSavedMoviesFetched(true);
-  }, [savedMovies, keywordForSavedMovies, isShortSavedMovies]);
+  }, [savedMovies, keywordForSavedMovies, isShortSavedMovies, loggedIn]);
 
   return (
     <CurrentUserContext.Provider value={ currentUser }>
