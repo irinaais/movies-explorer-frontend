@@ -4,14 +4,30 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
+import Preloader from "../Preloader/Preloader";
 
 function Movies(props) {
   return (
     <>
-      <Header theme={"header_theme_dark"} loggedIn={props.loggedIn}/>
+      <Header theme={"header_theme_dark"} loggedIn={props.loggedIn} openSavedMovies={props.openSavedMovies}/>
       <main className="movies">
-        <SearchForm/>
-        <MoviesCardList/>
+        <SearchForm
+          onSubmit={props.searchMovie}
+          chooseShortMovies={props.chooseShortMovies}
+          isShortMovies={props.isShortMovies}
+        />
+        {props.loader ? (
+          <Preloader/>
+        ) : (
+          <MoviesCardList
+            movies={props.movies}
+            moviesFetched={props.moviesFetched}
+            searchFailed={props.searchFailed}
+            saveMovie={props.saveMovie}
+            deleteMovie={props.deleteMovie}
+            savedMovies={props.savedMovies}
+          />
+        )}
       </main>
       <Footer/>
     </>

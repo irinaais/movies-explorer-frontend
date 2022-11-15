@@ -9,6 +9,18 @@
     padding: 70px;
 }
 
+.login__error-text {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #EE3465;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    display: block;
+    min-height: 24px;
+}
+
 .login__button {
     cursor: pointer;
     text-decoration: none;

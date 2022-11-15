@@ -3,7 +3,7 @@ import "./Register.css";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
 
-function Register() {
+function Register(props) {
   const formRef = useRef();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -53,10 +53,18 @@ function Register() {
     validationForm();
   }
 
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    props.onRegister(name, email, password);
+    setName("")
+    setEmail("");
+    setPassword("");
+  }
+
   return (
     <main className="register">
       <div className="register__container">
-        <form ref={ formRef } className="register__form" noValidate>
+        <form className="register__form" noValidate onSubmit={ handleSubmit } ref={ formRef }>
           <Link className="register__button register__button_logo" to="/">
             <img alt="Логотип" src={ logo } className="register__logo"/>
           </Link>
@@ -108,7 +116,16 @@ function Register() {
               <span className="register__input-error passwordUser-input-error">{ passwordError }</span>
             </div>
           </fieldset>
-          <button className="register__button register__button_signin" type="submit" aria-label="Зарегистрироваться" disabled={ isDisabled }>Зарегистрироваться</button>
+          <div className="register__button-error">
+            <p className="register__error-text">{props.errorOfRegister}</p>
+          </div>
+          <button
+            className="register__button register__button_signup"
+            type="submit"
+            aria-label="Зарегистрироваться"
+            disabled={ isDisabled }>
+            Зарегистрироваться
+          </button>
           <h3 className="register__text-register">Уже зарегистрированы?
             <Link className="register__button register__button_text-register" to="/signin">Войти</Link>
           </h3>

@@ -1,41 +1,90 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import design from "../../images/33_slova_o_design.svg";
-import hundredYears from "../../images/1000_let_design.svg";
-import benksi from "../../images/v_pogone_za_benksi.svg";
-import baskiya from "../../images/vzriv_realnosti.svg";
-import run from "../../images/beg_eto_svoboda.svg";
-import booksellers from "../../images/knigotorgovthsi.svg";
-import germany from "../../images/kogda_ya_dumayu_o_germanii_nochyu.svg";
-const cardLikeButtonClassName = "movies-card__button movies-card__button_like";
-const cardDislikeButtonClassName = "movies-card__button movies-card__button_dislike";
-const cardDeleteButtonClassName = "movies-card__button movies-card__button_delete";
 
-function MoviesCardList() {
+function MoviesCardList(props) {
   const pathName = window.location.pathname;
+  const [displayedMovies, setDisplayedMovies] = useState(0);
+
+  const cardLikeButtonClassName = "movies-card__button movies-card__button_like";
+  const cardDislikeButtonClassName = "movies-card__button movies-card__button_dislike";
+  const cardDeleteButtonClassName = "movies-card__button movies-card__button_delete";
+
+  const createMoviesCards = (movie, isLiked) => <MoviesCard
+    key={movie.id}
+    title={movie.nameRU}
+    duration={movie.duration}
+    image={`https://api.nomoreparties.co${movie.image.url}`}
+    button={isLiked? cardLikeButtonClassName : cardDislikeButtonClassName}
+    saveMovie={props.saveMovie}
+    clickOnTheButton={() => handleLikeClick(isLiked, movie)}
+    movie={movie}
+  />
+
+  const createSavedMoviesCards = (movie) => <MoviesCard
+    key={movie._id}
+    title={movie.nameRU}
+    duration={movie.duration}
+    image={movie.image}
+    clickOnTheButton={() => props.deleteMovie(movie._id)}
+    movie={movie}
+    button={cardDeleteButtonClassName}
+  />
+
+  function changeDisplayedMovies() {
+    setDisplayedMovies(displayedMovies + displayedMovies);
+  }
+
+  function calcOfNumberOfDisplayedMovies() {
+    if (window.innerWidth < 768) {
+      setDisplayedMovies(5);
+    } else {
+      setDisplayedMovies(7);
+    }
+  }
+
+  function handleLikeClick(isLiked, movie) {
+    if (!isLiked) {
+      props.saveMovie(movie);
+    } else {
+      const savedMovie = props.savedMovies.find(savedMovie => savedMovie.movieId === movie.id);
+      props.deleteMovie(savedMovie._id); // передаем в аргумент конвертированный id
+    }
+  }
+
+  useEffect(() => {
+    calcOfNumberOfDisplayedMovies();
+    window.addEventListener("resize", calcOfNumberOfDisplayedMovies);
+  }, [])
 
   return (
     <section className="movies-card-list">
       <div className="movies-card-list__container">
         {pathName === "/saved-movies" ? (
-          <ul className="movies-card-list__list">
-            <MoviesCard title="33 слова о дизайне" duration="1ч 42м" image={design} button={cardDeleteButtonClassName}/>
-            <MoviesCard title="Киноальманах «100 лет дизайна»" duration="1ч 42м" image={hundredYears} button={cardDeleteButtonClassName}/>
-            <MoviesCard title="В погоне за Бенкси" duration="1ч 42м" image={benksi} button={cardDeleteButtonClassName}/>
-          </ul>
+            <>
+              {props.savedMoviesFetched && props.filteredSavedMovies.length === 0 && <h2 className="movies-card-list__message">Ничего не найдено</h2>}
+              <ul className="movies-card-list__list">
+                {props.filteredSavedMovies.map(createSavedMoviesCards)}
+              </ul>
+            </>
         ) : (
           <>
+            {props.moviesFetched && props.movies.length === 0 && <h2 className="movies-card-list__message">Ничего не найдено</h2>}
+            {props.searchFailed &&
+              <h2 className="movies-card-list__message">
+                Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз
+              </h2>}
             <ul className="movies-card-list__list">
-              <MoviesCard title="33 слова о дизайне" duration="1ч 42м" image={design} button={cardLikeButtonClassName}/>
-              <MoviesCard title="Киноальманах «100 лет дизайна»" duration="1ч 42м" image={hundredYears} button={cardLikeButtonClassName}/>
-              <MoviesCard title="В погоне за Бенкси" duration="1ч 42м" image={benksi} button={cardDislikeButtonClassName}/>
-              <MoviesCard title="Баския: Взрыв реальности" duration="1ч 42м" image={baskiya} button={cardDislikeButtonClassName}/>
-              <MoviesCard title="Бег это свобода" duration="1ч 42м" image={run} button={cardLikeButtonClassName}/>
-              <MoviesCard title="Книготорговцы" duration="1ч 42м" image={booksellers} button={cardDislikeButtonClassName}/>
-              <MoviesCard title="Когда я думаю о Германии ночью" duration="1ч 42м" image={germany} button={cardDislikeButtonClassName}/>
+              {props.movies.slice(0, displayedMovies).map((movie) => {
+                const isLiked = props.savedMovies.some((savedMovie) => savedMovie.movieId === movie.id); //проверка по id каждого отфильтрованного фильма на его наличие в массиве сохраненных фильмов
+                return createMoviesCards(movie, isLiked);
+              })}
             </ul>
-            <button className="movies-card-list__button" type="button" aria-label="Кнопка Ещё">Ещё</button>
+            {props.movies.length > displayedMovies && <button
+                                                        className="movies-card-list__button"
+                                                        type="button"
+                                                        aria-label="Кнопка Ещё"
+                                                        onClick={changeDisplayedMovies}>Ещё</button>}
           </>
         )}
       </div>

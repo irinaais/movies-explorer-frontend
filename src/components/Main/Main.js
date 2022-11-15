@@ -7,13 +7,11 @@ import AboutMe from "../AboutMe/AboutMe";
 import Portfolio from "../Portfolio/Portfolio";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-// import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Main(props) {
-  // const currentUser = React.useContext(CurrentUserContext);
   return (
     <>
-      <Header theme={"header_theme_light"} loggedIn={props.loggedIn}/>
+      <Header theme={"header_theme_light"} loggedIn={props.loggedIn} openSavedMovies={props.openSavedMovies}/>
       <main className="main">
         <Promo/>
         <AboutProject/>

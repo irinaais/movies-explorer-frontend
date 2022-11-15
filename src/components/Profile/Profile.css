@@ -10,6 +10,18 @@
     padding: 74px 70px 70px;
 }
 
+.profile__edit-text {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #EE3465;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    display: block;
+    min-height: 100px;
+}
+
 .profile__form {
     width: 410px;
     margin: 0 auto;
@@ -33,7 +45,7 @@
 }
 
 .profile__info {
-    margin: 123px 0 295px;
+    margin: 123px 0 195px;
     padding: 0;
 }
 
@@ -45,7 +57,7 @@
     background-color: #202020;
     border: none;
     display: block;
-    padding: 16px 0;
+    padding: 16px 0 0 0;
     width: 100%;
     text-align: end;
 }
@@ -60,6 +72,17 @@
 
 .profile__label:last-of-type {
     border-bottom: none;
+}
+
+.profile__input-error {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #EE3465;
+    padding: 0;
+    margin: 2px 0;
+    display: block;
+    min-height: 12px;
 }
 
 .profile__input-text {
@@ -100,6 +123,10 @@
     color: white;
 }
 
+.profile__button_edit:disabled {
+    color: #c2c2c2;
+}
+
 .profile__button_exit {
     font-weight: 500;
     color: #EE3465;
@@ -119,5 +146,9 @@
 @media screen and (max-width: 767px) {
     .profile__form {
         width: 260px;
+    }
+
+    .profile__input-text {
+        top: 12px;
     }
 }

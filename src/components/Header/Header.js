@@ -11,7 +11,7 @@ function Header(props) {
           <img alt="Логотип" src={ logo } className="header__logo"/>
         </a>
         {props.loggedIn ? (
-          <Navigation />
+          <Navigation openSavedMovies={props.openSavedMovies}/>
         ):(
           <div className="header__button_container">
             <a className="header__button header__button_signup" href="/signup">Регистрация</a>

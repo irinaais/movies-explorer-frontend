@@ -3,7 +3,7 @@ import "./Login.css";
 import logo from "../../images/logo.svg";
 import { Link } from "react-router-dom";
 
-function Login() {
+function Login(props) {
   const formRef = useRef();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -41,10 +41,17 @@ function Login() {
     validationForm();
   }
 
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    props.onLogin(email, password);
+    setEmail("");
+    setPassword("");
+  }
+
   return (
     <main className="login">
       <div className="login__container">
-        <form ref={ formRef } className="login__form" noValidate>
+        <form ref={ formRef } className="login__form" noValidate onSubmit={handleSubmit}>
           <Link className="login__button login__button_logo" to="/">
             <img alt="Логотип" src={ logo } className="login__logo"/>
           </Link>
@@ -82,6 +89,9 @@ function Login() {
               <span className="login__input-error passwordUser-input-error">{passwordError}</span>
             </div>
           </fieldset>
+          <div className="login__button-error">
+            <p className="login__error-text">{props.errorOfLogin}</p>
+          </div>
           <button className="login__button login__button_signin" type="submit" aria-label="Авторизоваться" disabled={ isDisabled }>Войти</button>
           <h3 className="login__text-register">Ещё не зарегистрированы?
             <Link className="login__button login__button_text-register" to="/signup">Регистрация</Link>

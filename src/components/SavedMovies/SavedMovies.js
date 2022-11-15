@@ -8,10 +8,19 @@ import Footer from "../Footer/Footer";
 function SavedMovies(props) {
   return (
     <>
-      <Header theme={"header_theme_dark"} loggedIn={props.loggedIn}/>
+      <Header theme={"header_theme_dark"} loggedIn={props.loggedIn} openSavedMovies={props.openSavedMovies}/>
       <main className="saved-movies">
-        <SearchForm/>
-        <MoviesCardList/>
+        <SearchForm
+          onSubmit={props.searchSavedMovie}
+          chooseShortMovies={props.chooseShortMovies}
+          isShortMovies={props.isShortMovies}
+        />
+        <MoviesCardList
+          savedMovies={props.savedMovies}
+          filteredSavedMovies={props.filteredSavedMovies}
+          deleteMovie={props.deleteMovie}
+          savedMoviesFetched={props.savedMoviesFetched}
+        />
       </main>
       <Footer/>
     </>
