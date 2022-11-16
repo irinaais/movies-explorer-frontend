@@ -12,6 +12,7 @@ import * as moviesApi from "../../utils/MoviesApi";
 import * as mainApi from "../../utils/MainApi";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Preloader from "../Preloader/Preloader";
+import ProtectedAuthRoute from "../ProtectedAuthRoute/ProtectedAuthRoute";
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -289,23 +290,27 @@ function App() {
             <Route
               path="/signin"
               element={
-                <Login
-                  name="Виталий"
-                  email="pochta@yandex.ru"
-                  onLogin={handleLogin}
-                  errorOfLogin={errorOfLogin}
-                />
+                <ProtectedAuthRoute loggedIn={loggedIn}>
+                  <Login
+                    name="Виталий"
+                    email="pochta@yandex.ru"
+                    onLogin={handleLogin}
+                    errorOfLogin={errorOfLogin}
+                  />
+                </ProtectedAuthRoute>
               }
             />
             <Route
               path="/signup"
               element={
-                <Register
-                  name="Виталий"
-                  email="pochta@yandex.ru"
-                  onRegister={handleRegister}
-                  errorOfRegister={errorOfRegister}
-                />
+                <ProtectedAuthRoute loggedIn={loggedIn}>
+                  <Register
+                    name="Виталий"
+                    email="pochta@yandex.ru"
+                    onRegister={handleRegister}
+                    errorOfRegister={errorOfRegister}
+                  />
+                </ProtectedAuthRoute>
               }
             />
             <Route path="/*" element={<PageNotFound/>}/>
