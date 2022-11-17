@@ -54,7 +54,11 @@ function App() {
             return false;
           }
         })
-        .catch(err => console.log(`Ошибка: ${err.status}`));
+        .catch((err) => { //если токен не корректный
+          setIsLoading(false);
+          handleSignOut();
+          console.log(`Ошибка: ${err.status}`)
+        });
     } else {
       setIsLoading(false);
     }
