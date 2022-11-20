@@ -20,7 +20,8 @@ function Movies(props) {
           <Preloader/>
         ) : (
           <MoviesCardList
-            movies={props.movies}
+            allMovies={props.allMovies}
+            filteredMovies={props.filteredMovies}
             moviesFetched={props.moviesFetched}
             searchFailed={props.searchFailed}
             saveMovie={props.saveMovie}

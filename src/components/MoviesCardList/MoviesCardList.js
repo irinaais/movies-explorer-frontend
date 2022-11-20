@@ -69,22 +69,35 @@ function MoviesCardList(props) {
             </>
         ) : (
           <>
-            {props.moviesFetched && props.movies.length === 0 && <h2 className="movies-card-list__message">Ничего не найдено</h2>}
+            {props.moviesFetched && props.filteredMovies.length === 0 && <h2 className="movies-card-list__message">Ничего не найдено</h2>}
             {props.searchFailed &&
               <h2 className="movies-card-list__message">
                 Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз
               </h2>}
             <ul className="movies-card-list__list">
-              {props.movies.slice(0, displayedMovies).map((movie) => {
-                const isLiked = props.savedMovies.some((savedMovie) => savedMovie.movieId === movie.id); //проверка по id каждого отфильтрованного фильма на его наличие в массиве сохраненных фильмов
-                return createMoviesCards(movie, isLiked);
-              })}
+              {props.moviesFetched ? (
+                props.filteredMovies.slice(0, displayedMovies).map((movie) => {
+                  const isLiked = props.savedMovies.some((savedMovie) => savedMovie.movieId === movie.id); //проверка по id каждого отфильтрованного фильма на его наличие в массиве сохраненных фильмов
+                  return createMoviesCards(movie, isLiked);
+                }))
+                : (
+                  props.allMovies.slice(0, displayedMovies).map((movie) => {
+                    const isLiked = props.savedMovies.some((savedMovie) => savedMovie.movieId === movie.id); //проверка по id каждого отфильтрованного фильма на его наличие в массиве сохраненных фильмов
+                    return createMoviesCards(movie, isLiked);
+                  })
+                )
+              }
             </ul>
-            {props.movies.length > displayedMovies && <button
-                                                        className="movies-card-list__button"
-                                                        type="button"
-                                                        aria-label="Кнопка Ещё"
-                                                        onClick={changeDisplayedMovies}>Ещё</button>}
+            {props.moviesFetched ? (props.filteredMovies.length > displayedMovies && <button
+                                                                              className="movies-card-list__button"
+                                                                              type="button"
+                                                                              aria-label="Кнопка Ещё"
+                                                                              onClick={changeDisplayedMovies}>Ещё</button>
+            ) : (props.allMovies.length > displayedMovies && <button
+                                                              className="movies-card-list__button"
+                                                              type="button"
+                                                              aria-label="Кнопка Ещё"
+                                                              onClick={changeDisplayedMovies}>Ещё</button>)}
           </>
         )}
       </div>

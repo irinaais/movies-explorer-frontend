@@ -141,26 +141,48 @@ function App() {
   }
 
   function handleSearchMovie(keyword) {
-    if (allMovies.length === 0) {
-      moviesApi
-        .getAllMovies()
-        .then((movies) => {
-          setLoader(true); //показываем прелоадер
-          setAllMovies(movies);
-          localStorage.setItem("allMovies", JSON.stringify(movies));
+    // if (allMovies.length === 0) {
+    //   moviesApi
+    //     .getAllMovies()
+    //     .then((movies) => {
+    //       setLoader(true); //показываем прелоадер
+    //       setAllMovies(movies);
+    //       localStorage.setItem("allMovies", JSON.stringify(movies));
           setKeyword(keyword);
           setMoviesFetched(true); //поиск произошел
-        })
-        .catch((err) => {
-          setSearchFailed(true);
-          console.log(`Ошибка: ${err.status}`);
-        })
-        .finally(() => setTimeout(() => setLoader(false), 800))
-    } else {
-      setKeyword(keyword);
-      setMoviesFetched(true); //поиск произошел
-    }
+    //     })
+    //     .catch((err) => {
+    //       setSearchFailed(true);
+    //       console.log(`Ошибка: ${err.status}`);
+    //     })
+    //     .finally(() => setTimeout(() => setLoader(false), 800))
+    // } else {
+    //   setKeyword(keyword);
+    //   setMoviesFetched(true); //поиск произошел
+    // }
   }
+
+  // function handleSearchMovie(keyword) {
+  //   if (allMovies.length === 0) {
+  //     moviesApi
+  //       .getAllMovies()
+  //       .then((movies) => {
+  //         setLoader(true); //показываем прелоадер
+  //         setAllMovies(movies);
+  //         localStorage.setItem("allMovies", JSON.stringify(movies));
+  //         setKeyword(keyword);
+  //         setMoviesFetched(true); //поиск произошел
+  //       })
+  //       .catch((err) => {
+  //         setSearchFailed(true);
+  //         console.log(`Ошибка: ${err.status}`);
+  //       })
+  //       .finally(() => setTimeout(() => setLoader(false), 800))
+  //   } else {
+  //     setKeyword(keyword);
+  //     setMoviesFetched(true); //поиск произошел
+  //   }
+  // }
 
   function handleSearchSavedMovie(keywordForSavedMovies) {
     setKeywordForSavedMovies(keywordForSavedMovies);
@@ -191,13 +213,30 @@ function App() {
     setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, есть ли в localStorage состояние чекбокса короткометражек
     setKeyword(localStorage.getItem("keyword") || "");
 
-    const itemAllMovies = localStorage.getItem("allMovies");
-    if (itemAllMovies != null) {
-      const localStorageAllMovies = JSON.parse(itemAllMovies);
-      setAllMovies(localStorageAllMovies);
-    } else {
-      setAllMovies([]);
-    }
+    // if (localStorage.getItem("allMovies") == null) {
+      moviesApi
+        .getAllMovies()
+        .then((movies) => {
+          setLoader(true); //показываем прелоадер
+          setAllMovies(movies);
+          // localStorage.setItem("allMovies", JSON.stringify(movies));
+          // setKeyword(keyword);
+          // setMoviesFetched(true); //поиск произошел
+        })
+        .catch((err) => {
+          setSearchFailed(true); //произошла ошибка при поиске
+          console.log(`Ошибка: ${err.status}`);
+        })
+        .finally(() => setTimeout(() => setLoader(false), 800))
+    // }
+
+    // const itemAllMovies = localStorage.getItem("allMovies");
+    // if (itemAllMovies != null) {
+    //   const localStorageAllMovies = JSON.parse(itemAllMovies);
+    //   setAllMovies(localStorageAllMovies);
+    // } else {
+    //   setAllMovies([]);
+    // }
   }, []);
 
   useEffect(() => {
@@ -255,7 +294,8 @@ function App() {
                   <Movies
                     loggedIn={loggedIn}
                     searchMovie={handleSearchMovie}
-                    movies={filteredMovies}
+                    filteredMovies={filteredMovies}
+                    allMovies={allMovies}
                     loader={loader}
                     moviesFetched={moviesFetched}
                     isErrorOfSearch={searchFailed}
