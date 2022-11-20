@@ -141,20 +141,25 @@ function App() {
   }
 
   function handleSearchMovie(keyword) {
-    moviesApi
-      .getAllMovies()
-      .then((movies) => {
-        setLoader(true); //показываем прелоадер
-        setAllMovies(movies);
-        localStorage.setItem("allMovies", JSON.stringify(movies));
-        setKeyword(keyword);
-        setMoviesFetched(true); //поиск произошел
-      })
-      .catch((err) => {
-        setSearchFailed(true);
-        console.log(`Ошибка: ${err.status}`);
-      })
-      .finally(() => setTimeout(() => setLoader(false), 800))
+    if (allMovies.length === 0) {
+      moviesApi
+        .getAllMovies()
+        .then((movies) => {
+          setLoader(true); //показываем прелоадер
+          setAllMovies(movies);
+          localStorage.setItem("allMovies", JSON.stringify(movies));
+          setKeyword(keyword);
+          setMoviesFetched(true); //поиск произошел
+        })
+        .catch((err) => {
+          setSearchFailed(true);
+          console.log(`Ошибка: ${err.status}`);
+        })
+        .finally(() => setTimeout(() => setLoader(false), 800))
+    } else {
+      setKeyword(keyword);
+      setMoviesFetched(true); //поиск произошел
+    }
   }
 
   function handleSearchSavedMovie(keywordForSavedMovies) {
@@ -185,7 +190,14 @@ function App() {
     setFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")) || []); //проверяем, есть ли в localStorage отфильтрованные фильмы
     setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, есть ли в localStorage состояние чекбокса короткометражек
     setKeyword(localStorage.getItem("keyword") || "");
-    setAllMovies(JSON.parse(localStorage.getItem("allMovies")) || []);
+
+    const itemAllMovies = localStorage.getItem("allMovies");
+    if (itemAllMovies != null) {
+      const localStorageAllMovies = JSON.parse(itemAllMovies);
+      setAllMovies(localStorageAllMovies);
+    } else {
+      setAllMovies([]);
+    }
   }, []);
 
   useEffect(() => {
