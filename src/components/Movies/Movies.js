@@ -12,6 +12,7 @@ function Movies(props) {
       <Header theme={"header_theme_dark"} loggedIn={props.loggedIn} openSavedMovies={props.openSavedMovies}/>
       <main className="movies">
         <SearchForm
+          keyword={props.keyword}
           onSubmit={props.searchMovie}
           chooseShortMovies={props.chooseShortMovies}
           isShortMovies={props.isShortMovies}

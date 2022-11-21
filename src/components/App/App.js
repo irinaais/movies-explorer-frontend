@@ -134,55 +134,18 @@ function App() {
 
   function handleChoosingShortMovies() { //переключение чекбокса короткометражек на странице /movies
     setIsShortMovies(!isShortMovies);
+    setMoviesFetched(true);
   }
 
   function handleChoosingShortSavedMovies() { //переключение чекбокса короткометражек на странице /saved-movies
     setIsShortSavedMovies(!isShortSavedMovies);
+    setMoviesFetched(true);
   }
 
   function handleSearchMovie(keyword) {
-    // if (allMovies.length === 0) {
-    //   moviesApi
-    //     .getAllMovies()
-    //     .then((movies) => {
-    //       setLoader(true); //показываем прелоадер
-    //       setAllMovies(movies);
-    //       localStorage.setItem("allMovies", JSON.stringify(movies));
-          setKeyword(keyword);
-          setMoviesFetched(true); //поиск произошел
-    //     })
-    //     .catch((err) => {
-    //       setSearchFailed(true);
-    //       console.log(`Ошибка: ${err.status}`);
-    //     })
-    //     .finally(() => setTimeout(() => setLoader(false), 800))
-    // } else {
-    //   setKeyword(keyword);
-    //   setMoviesFetched(true); //поиск произошел
-    // }
+    setKeyword(keyword);
+    setMoviesFetched(true); //поиск произошел
   }
-
-  // function handleSearchMovie(keyword) {
-  //   if (allMovies.length === 0) {
-  //     moviesApi
-  //       .getAllMovies()
-  //       .then((movies) => {
-  //         setLoader(true); //показываем прелоадер
-  //         setAllMovies(movies);
-  //         localStorage.setItem("allMovies", JSON.stringify(movies));
-  //         setKeyword(keyword);
-  //         setMoviesFetched(true); //поиск произошел
-  //       })
-  //       .catch((err) => {
-  //         setSearchFailed(true);
-  //         console.log(`Ошибка: ${err.status}`);
-  //       })
-  //       .finally(() => setTimeout(() => setLoader(false), 800))
-  //   } else {
-  //     setKeyword(keyword);
-  //     setMoviesFetched(true); //поиск произошел
-  //   }
-  // }
 
   function handleSearchSavedMovie(keywordForSavedMovies) {
     setKeywordForSavedMovies(keywordForSavedMovies);
@@ -211,32 +174,18 @@ function App() {
   useEffect(() => {
     setFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")) || []); //проверяем, есть ли в localStorage отфильтрованные фильмы
     setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, есть ли в localStorage состояние чекбокса короткометражек
-    setKeyword(localStorage.getItem("keyword") || "");
 
-    // if (localStorage.getItem("allMovies") == null) {
-      moviesApi
-        .getAllMovies()
-        .then((movies) => {
-          setLoader(true); //показываем прелоадер
-          setAllMovies(movies);
-          // localStorage.setItem("allMovies", JSON.stringify(movies));
-          // setKeyword(keyword);
-          // setMoviesFetched(true); //поиск произошел
-        })
-        .catch((err) => {
-          setSearchFailed(true); //произошла ошибка при поиске
-          console.log(`Ошибка: ${err.status}`);
-        })
-        .finally(() => setTimeout(() => setLoader(false), 800))
-    // }
-
-    // const itemAllMovies = localStorage.getItem("allMovies");
-    // if (itemAllMovies != null) {
-    //   const localStorageAllMovies = JSON.parse(itemAllMovies);
-    //   setAllMovies(localStorageAllMovies);
-    // } else {
-    //   setAllMovies([]);
-    // }
+    moviesApi
+      .getAllMovies()
+      .then((movies) => {
+        setLoader(true); //показываем прелоадер
+        setAllMovies(movies);
+      })
+      .catch((err) => {
+        setSearchFailed(true); //произошла ошибка при поиске
+        console.log(`Ошибка: ${err.status}`);
+      })
+      .finally(() => setTimeout(() => setLoader(false), 800))
   }, []);
 
   useEffect(() => {
@@ -260,7 +209,7 @@ function App() {
     }
     setFilteredMovies(filteredMovies);
     localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies)); //сохранение в localStorage результата поиска фильмов
-    localStorage.setItem("keyword", keyword);
+    setKeyword(keyword);
     localStorage.setItem("checkbox", (isShortMovies).toString()); //сохранение в localStorage состояния чекбокса
   }, [allMovies, keyword, isShortMovies, loggedIn]);
 
@@ -292,6 +241,7 @@ function App() {
               element={
                 <ProtectedRoute loggedIn={loggedIn}>
                   <Movies
+                    keyword={keyword}
                     loggedIn={loggedIn}
                     searchMovie={handleSearchMovie}
                     filteredMovies={filteredMovies}

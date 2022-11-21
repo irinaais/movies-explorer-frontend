@@ -1,17 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import "./SearchForm.css";
 import Checkbox from "../Checkbox/Checkbox";
 
 function SearchForm(props) {
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState(props.keyword);
   const [errorText, setErrorText] = useState("");
-  const pathName = window.location.pathname;
-
-  useEffect(() => {
-    if (pathName === "/movies") {
-      setKeyword(localStorage.getItem("keyword"));
-    }
-  }, [])
 
   function handleChange(evt) {
     setKeyword(evt.target.value);
