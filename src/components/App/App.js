@@ -173,7 +173,6 @@ function App() {
 
   useEffect(() => {
     setFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")) || []); //проверяем, есть ли в localStorage отфильтрованные фильмы
-    setIsShortMovies(localStorage.getItem("checkbox") === "true"); //проверяем, есть ли в localStorage состояние чекбокса короткометражек
 
     moviesApi
       .getAllMovies()
@@ -210,7 +209,6 @@ function App() {
     setFilteredMovies(filteredMovies);
     localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies)); //сохранение в localStorage результата поиска фильмов
     setKeyword(keyword);
-    localStorage.setItem("checkbox", (isShortMovies).toString()); //сохранение в localStorage состояния чекбокса
   }, [allMovies, keyword, isShortMovies, loggedIn]);
 
   useEffect(() => {
