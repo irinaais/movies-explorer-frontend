@@ -172,8 +172,6 @@ function App() {
   }
 
   useEffect(() => {
-    setFilteredMovies(JSON.parse(localStorage.getItem("filteredMovies")) || []); //проверяем, есть ли в localStorage отфильтрованные фильмы
-
     moviesApi
       .getAllMovies()
       .then((movies) => {
@@ -207,7 +205,6 @@ function App() {
       filteredMovies = filteredMovies.filter(movie => movie.duration <= 40);
     }
     setFilteredMovies(filteredMovies);
-    localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies)); //сохранение в localStorage результата поиска фильмов
     setKeyword(keyword);
   }, [allMovies, keyword, isShortMovies, loggedIn]);
 
