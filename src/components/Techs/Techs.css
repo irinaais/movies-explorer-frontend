@@ -48,13 +48,19 @@
 .techs__item-text {
     margin: 0;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 17px;
     letter-spacing: -0.04em;
     padding: 21px 26px;
     background-color: #303030;
     border-radius: 10px;
     text-align: center;
+    transition: background-color .8s;
+}
+
+.techs__item-text:hover {
+    background-color: #3DDC84;
+    transition: background-color .3s;
 }
 
 @media screen and (max-width: 1023px) and (min-width: 768px) {
