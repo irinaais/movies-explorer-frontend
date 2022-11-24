@@ -32,7 +32,7 @@ function MoviesCardList(props) {
   />
 
   function changeDisplayedMovies() {
-    setDisplayedMovies(displayedMovies + displayedMovies);
+    setDisplayedMovies(displayedMovies + 7);
   }
 
   function calcOfNumberOfDisplayedMovies() {
