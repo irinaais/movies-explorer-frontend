@@ -4,6 +4,7 @@
     justify-content: space-between;
     padding: 6px;
     margin-bottom: 40px;
+    border-radius: 8px;
 }
 
 .movies-card:last-child {
@@ -38,6 +39,7 @@
     cursor: pointer;
     border: none;
     background-color: transparent;
+    border-radius: 8px;
 }
 
 .movies-card__button:hover {
