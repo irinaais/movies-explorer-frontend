@@ -19,9 +19,12 @@ function MoviesCard(props) {
           onClick={props.clickOnTheButton}
           />
       </div>
-      <a className="movies-card__link" href={props.movie.trailerLink} target="_blank" rel="noreferrer">
-        <img className="movies-card__image" alt={props.title} src={props.image}/>
-      </a>
+      <div className="movies-card__tooltip-container">
+        <a className="movies-card__link" href={props.movie.trailerLink} target="_blank" rel="noreferrer">
+          <img className="movies-card__image" alt={props.title} src={props.image}/>
+        </a>
+        <div className="movies-card__tooltip">{props.movie.description}</div>
+      </div>
     </li>
   );
 }
