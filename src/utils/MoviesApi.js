@@ -1,18 +1,22 @@
-import { MOVIES_URL } from "./constans";
+import {MOVIES_URL} from "./constans";
 
-function checkResponse(res) {
+async function checkResponse(res) {
   if (res.ok) {
-    return res.json();
+    return await res.json();
   }
-  return Promise.reject(res);
+  throw new Error();
 }
 
-export function getAllMovies() {
-  return fetch(MOVIES_URL, {
+export async function getAllMovies() {
+  try {
+    const movies = await fetch(MOVIES_URL, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       }
-    })
-      .then(checkResponse);
+    });
+    return await checkResponse(movies);
+  } catch (err) {
+    console.error(err);
   }
+}
