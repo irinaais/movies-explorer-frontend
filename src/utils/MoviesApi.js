@@ -17,6 +17,6 @@ export async function getAllMovies() {
     });
     return await checkResponse(movies);
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 }
