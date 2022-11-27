@@ -42,7 +42,7 @@
     width: 100%;
 }
 
-.register__button_signin:disabled {
+.register__button_signup:disabled {
     background-color: #f8f8f8;
     color: #c2c2c2;
 }
