@@ -1,22 +1,19 @@
 import { BASE_URL } from "./constans";
 
-function checkResponse(res) {
+async function checkResponse(res) {
   if (res.ok) {
-    return res.json();
+    return await res.json();
   }
   return Promise.reject(res);
 }
 
-export function register(name, email, password) {
-  return fetch(`${BASE_URL}/signup`, {
+export async function register(name, email, password) {
+  const user = await fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({name, email, password})
   })
-    .then(checkResponse)
-    .then((res) => {
-      return res;
-    })
+  return await checkResponse(user);
 }
 
 export function authorise(email, password) {
