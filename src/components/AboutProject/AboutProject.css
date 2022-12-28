@@ -19,9 +19,8 @@
 .about-project__description {
     font-size: 14px;
     font-weight: 400;
-    line-height: 24px;
-    letter-spacing: -0.04em;
-    margin: 20px 0 0;
+    line-height: 20px;
+    margin: 26px 0 0;
     color: white;
 }
 
@@ -31,10 +30,11 @@
     color: white;
     list-style: none;
     padding: 0;
+    justify-content: space-between;
 }
 
 .about-project__list-item {
-    max-width: 550px;
+    max-width: 563px;
 }
 
 .about-project__list-title {
@@ -77,11 +77,13 @@
 .about-project__container-title_backend {
     color: black;
     background-color: #3DDC84;
+    font-weight: 500;
 }
 
 .about-project__container-title_frontend {
     color: white;
     background-color: #303030;
+    font-weight: 500;
 }
 
 .about-project__container-description {
@@ -104,8 +106,13 @@
         padding: 0 0 22px;
     }
 
+    .about-project__description {
+        font-size: 12px;
+        line-height: 18px;
+        margin: 22px 0 0;
+    }
+
     .about-project__list {
-        justify-content: space-between;
         margin-bottom: 93px;
     }
 
@@ -132,6 +139,12 @@
         padding: 0 0 28px;
         font-size: 18px;
         line-height: 22px;
+    }
+
+    .about-project__description {
+        font-size: 11px;
+        line-height: 16px;
+        margin: 16px 0 0;
     }
 
     .about-project__list {
