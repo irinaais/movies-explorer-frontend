@@ -6,6 +6,8 @@ function AboutProject() {
     <section className="about-project">
       <div className="about-project__container">
         <h2 className="about-project__header">О проекте</h2>
+        <p className="about-project__description">На сайте можно зарегистрироваться, найти информацию об интересующем фильме и составить список избранного.
+        При наведении курсора на постер фильма появляется его описание, а при нажатии - открывается трейлер.</p>
         <ul className="about-project__list">
           <li className="about-project__list-item">
             <h3 className="about-project__list-title">Дипломный проект включал 5 этапов</h3>
