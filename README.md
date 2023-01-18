@@ -3,7 +3,7 @@
 Приложение — поисковик по фильмам, в котором можно создавать список любимых кинолент.
 Главная страница описывает проект, содержит информацию обо мне и примеры других моих работ.
 Использовала: `React.js`, `JavaScript`, `CSS`, `HTML`, `БЭМ (Nested)`, `Адаптивная верстка`, 
-`REST API`, `Create-react-app`,`React Router`, `ESLint`, `Figma`, `Flexbox`, `Grid Loyout`.
+`REST API`, `Create-react-app`,`React Router`, `ESLint`, `Figma`, `Flexbox`, `Grid Layout`.
 
 ### Функциональность
 * регистрация
