@@ -1,0 +1,9 @@
+.movies {
+    min-height: 580px;
+}
+
+@media screen and (max-width: 767px) {
+    .movies {
+        min-height: 462px;
+    }
+}
