@@ -47,4 +47,4 @@
 
 Ссылка на backend - api.movies.irinaosipova.nomoredomains.sbs
 
-Публичный IP-адрес сервера - 51.250.24.224
+Публичный IP-адрес сервера - 37.220.83.8
