@@ -48,7 +48,7 @@
     width: 270px;
     height: 327px;
     border-radius: 10px;
-    box-shadow: 0 8px 20px black;
+    box-shadow: 0 8px 20px #0a0a0a;
 }
 
 .about-me__contacts-list {

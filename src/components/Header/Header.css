@@ -54,6 +54,11 @@
     width: 38px;
     height: 38px;
     padding: 0;
+    border-radius: 50%;
+}
+
+.header__button_logo:hover {
+    box-shadow: 0 0 20px #a4a4a4;
 }
 
 @media screen and (max-width: 1023px) and (min-width: 768px) {
