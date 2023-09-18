@@ -10,19 +10,31 @@ function Portfolio() {
         <ul className="portfolio__list">
           <li className="portfolio__item">
             <a className="portfolio__link" href="https://github.com/irinaais/how-to-learn" target="_blank" rel="noreferrer">
-              <p className="portfolio__link-text">Статичный сайт</p>
+              <p className="portfolio__link-text">How To Learn <span className="portfolio__link-span">статичный сайт</span></p>
               <img className="portfolio__contacts-arrow" alt="Изображение стрелки" src={ arrow }/>
             </a>
           </li>
           <li className="portfolio__item">
             <a className="portfolio__link" href="https://github.com/irinaais/russian-travel" target="_blank" rel="noreferrer">
-              <p className="portfolio__link-text">Адаптивный сайт</p>
+              <p className="portfolio__link-text">Russian Travel <span className="portfolio__link-span">адаптивный сайт</span></p>
               <img className="portfolio__contacts-arrow" alt="Изображение стрелки" src={ arrow }/>
             </a>
           </li>
           <li className="portfolio__item">
-            <a className="portfolio__link" href="http://mesto.irinaosipova.nomoredomains.sbs/" target="_blank" rel="noreferrer">
-              <p className="portfolio__link-text">Одностраничное приложение</p>
+            <a className="portfolio__link" href="https://github.com/irinaais/react-mesto-api-full" target="_blank" rel="noreferrer">
+              <p className="portfolio__link-text">Mesto — React Version <span className="portfolio__link-span">spa</span></p>
+              <img className="portfolio__contacts-arrow" alt="Изображение стрелки" src={ arrow }/>
+            </a>
+          </li>
+          <li className="portfolio__item">
+            <a className="portfolio__link" href="https://github.com/irinaais/movies-explorer-frontend" target="_blank" rel="noreferrer">
+              <p className="portfolio__link-text">Movies Explorer <span className="portfolio__link-span">spa</span></p>
+              <img className="portfolio__contacts-arrow" alt="Изображение стрелки" src={ arrow }/>
+            </a>
+          </li>
+          <li className="portfolio__item">
+            <a className="portfolio__link" href="https://github.com/irinaais/ToDo-Planner" target="_blank" rel="noreferrer">
+              <p className="portfolio__link-text">ToDo Planner <span className="portfolio__link-span">spa</span></p>
               <img className="portfolio__contacts-arrow" alt="Изображение стрелки" src={ arrow }/>
             </a>
           </li>
