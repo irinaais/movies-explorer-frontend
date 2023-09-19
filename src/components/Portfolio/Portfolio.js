@@ -22,7 +22,7 @@ function Portfolio() {
           </li>
           <li className="portfolio__item">
             <a className="portfolio__link" href="https://github.com/irinaais/react-mesto-api-full" target="_blank" rel="noreferrer">
-              <p className="portfolio__link-text">Mesto — React Version <span className="portfolio__link-span">spa</span></p>
+              <p className="portfolio__link-text">Mesto <span className="portfolio__link-span">spa</span></p>
               <img className="portfolio__contacts-arrow" alt="Изображение стрелки" src={ arrow }/>
             </a>
           </li>
