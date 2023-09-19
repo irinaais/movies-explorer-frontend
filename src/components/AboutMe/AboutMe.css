@@ -45,7 +45,6 @@
 }
 
 .about-me__image {
-    width: 270px;
     height: 327px;
     border-radius: 10px;
     box-shadow: 0 8px 20px #0a0a0a;
@@ -102,7 +101,6 @@
     }
 
     .about-me__image {
-        width: 255px;
         height: 307px;
     }
 
@@ -136,7 +134,6 @@
     .about-me__image {
         order: 1;
         margin: 0 auto;
-        width: 292px;
         height: 352px;
     }
 
