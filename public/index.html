@@ -11,9 +11,25 @@
     />
     <meta name="author" content="Irina Osipova" />
     <title>Movies-explorer</title>
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('Service Worker is registered! ');
+          })
+          .catch(err => {
+            console.log('Registration failed  ', err);
+          });
+      });
+    } else {
+      console.log('service worker is not supported');
+    }
+  </script>
   </body>
 </html>
