@@ -1,4 +1,7 @@
-//true for production, false - for development
+import { precacheAndRoute } from 'workbox-precaching';
+precacheAndRoute(self.__WB_MANIFEST);
+
+// true for production, false - for development
 const doCache = true;
 
 // Name our cache
