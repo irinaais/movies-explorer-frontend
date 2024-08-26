@@ -62,7 +62,7 @@ function Portfolio() {
             </a>
           </li>
           <li className="portfolio__item">
-            <a className="portfolio__link" href="https://github.com/irinaais/telegram-horoscope-appr" target="_blank"
+            <a className="portfolio__link" href="https://github.com/irinaais/telegram-horoscope-app" target="_blank"
                rel="noreferrer">
               <p className="portfolio__link-text">Horoscope Bot <span
                 className="portfolio__link-span">telegram mini app</span></p>
